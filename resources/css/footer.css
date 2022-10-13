@@ -1,0 +1,58 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    max-width: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+.khungtrong{
+    padding: 62px 0 48px;
+}
+.footer{
+    
+    width: auto;
+    height: 273px;
+    border-top: 1px solid rgb(187, 187, 187);
+}
+a{
+    text-decoration: none;
+}
+.footer-menu{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -10px;
+}
+.menu-item{
+    margin: 28px 60px 0;
+    font-size: 14px;
+    line-height: 1.14286;
+    font-weight: 700;
+    color: #777E90;
+}
+.textlua{
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 17px;
+    margin-bottom: 14px;
+}
+.nutemail{
+    height: 45px;
+    border-radius: 60px;
+    font-size: 14px;
+}
+.nutxanh{
+    position: absolute;
+    top: -15px;
+    right: 22px;
+    width: 32px;
+}
+.footer-copyright{
+    background-color:#777e9042;
+    height: 1px;
+    width: auto;
+}
+.coppyright{
+    font-size: 12px;
+    margin-top: 22px;
+}
+
