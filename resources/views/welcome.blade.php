@@ -20,7 +20,13 @@
             }
         </style>
     </head>
+
+    <style>
+      .hello {
+        color: red;
+      }
+    </style>
     <body class="antialiased">
-        <h1>Hello World</h1>
+        <h1 class="hello">Hello World</h1>
     </body>
 </html>
