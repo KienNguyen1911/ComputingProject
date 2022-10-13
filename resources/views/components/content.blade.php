@@ -12,6 +12,58 @@
 </head>
 
 <body>
+    <div class="section adventure">
+        <div class="adventure-center center">
+            <div class="adventure-head">
+                <h2 class="adventure-title">Let’s go on an adventure</h2>
+                <p class="adventure-info">Find and book a great experience.</p>
+            </div>
+            <div class="adventure-wrapper">
+                <div class="adventure-slider row">
+                    <div class="adventure-item col-lg-4">
+                        <div class="adventure-preview">
+                            <img src="img/adventure-pic-1.png" alt="">
+                        </div>
+                        <div class="adventure-details">
+                            <div class="adventure-subtitle">
+                                Luxury resort at the sea
+                            </div>
+                            <a class="status adventure-places">
+                                9,326 places
+                            </a>
+                        </div>
+                    </div>
+                    <div class="adventure-item col-lg-4">
+                        <div class="adventure-preview">
+                            <img src="img/adventure-pic-2.png" alt="">
+                        </div>
+                        <div class="adventure-details">
+                            <div class="adventure-subtitle">
+                                Camping amidst the wild
+                            </div>
+                            <a class="status adventure-places">
+                                12,326 places
+                            </a>
+                        </div>
+                    </div>
+                    <div class="adventure-item col-lg-4">
+                        <div class="adventure-preview">
+                            <img src="img/adventure-pic-3.png" alt="">
+                        </div>
+                        <div class="adventure-details">
+                            <div class="adventure-subtitle">
+                                Luxury resort at the sea
+                            </div>
+                            <a class="status adventure-places">
+                                5,326 places
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="section travel">
         <div class="travel-center center">
             <div class="travel-head">

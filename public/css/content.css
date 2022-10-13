@@ -1,3 +1,7 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap');
+</style>
+
 * {
     font-family: 'DM Sans', sans-serif;
     box-sizing: border-box;
@@ -5,7 +9,65 @@
 
 a {
     text-decoration: none !important;
+    font-family: Popins, sans-serif !important;
 }
+
+/* ================= Adventure ==================== */
+.adventure-head {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.adventure-head .adventure-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 1rem;
+    letter-spacing: -0.1rem;
+}
+.adventure-head .adventure-info {
+    margin-top: 0.8rem;
+    font-size: 1.5rem;
+    line-height: 1.33333;
+    letter-spacing: -.01em;
+    color: #777E90;
+}
+
+.adventure-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adventure-preview img {
+    width: 10rem;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+.adventure-details {
+    padding: 0 1rem 0 1rem;
+}
+.adventure-details .adventure-subtitle {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+    font-family: Poppins, sans-serif;
+}
+
+.status {
+    display: inline-block;
+    padding: 0 12px;
+    background: #E6E8EC;
+    border-radius: 13px;
+    font-size: 12px;
+    line-height: 26px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #353945;
+}
+
 
 /* TRAVEL */
 .section {
@@ -29,7 +91,7 @@ a {
 }
 
 .travel-head h2 {
-    letter-spacing: -0.2rem;
+    letter-spacing: -0.1rem;
     line-height: 1.167;
     font-size: 3rem;
     font-weight: 700;
