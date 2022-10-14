@@ -29,11 +29,10 @@
                       Traverlers
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Stays</a></li>
-                      <li><a class="dropdown-item" href="#">Flights</a></li>
-                      <li><a class="dropdown-item" href="#">Cars</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Things to do</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="fa-solid fa-comment-dots"></i>Stays</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="fa-solid fa-ticket"></i>Flights</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="fa-solid fa-car-side"></i>Cars</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="fa-solid fa-list-check"></i>Things to do</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -73,15 +72,16 @@
               <ul class="nav nav-tabs">
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="#">Stays</a>
+                  <li><hr class="dropdown-divider"></li>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Flights</a>
+                  <a class="nav-link" href="#">Flights</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Cars</a>
+                  <a class="nav-link" href="#">Cars</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link disabled">Things to do</a>
+                  <a class="nav-link" href="#">Things to do</a>
                 </li>
               </ul>
               <div class="search-detail">
