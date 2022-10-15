@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('header', function () {
+    return view('components.header');
+});
+
+Route::get('footer', function () {
+    return view('components.footer');
+});
+
 Route::get('/content', function () {
     return view('components.content');
 });
