@@ -55,7 +55,7 @@
         {{-- Background --}}
             <div class="background">
                 <div class="background-image">
-                    <img src="{{asset('image/main-pic-1.jpg')}}" style="border-radius: 25px"alt="Main">
+                    <img src="{{asset('img/main-pic-1.jpg')}}" style="border-radius: 25px"alt="Main">
                 </div>
                 <div class="background-text">
                     <div class="background-text__title">
