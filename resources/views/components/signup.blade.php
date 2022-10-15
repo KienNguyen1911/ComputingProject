@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Document</title>
 <style>
     
@@ -19,13 +19,13 @@
 }
 .mfp-content {
     position: relative;
-    display: inline-block;
+    display: flex;
     vertical-align: middle;
     margin: 100 auto;
     text-align: left;
     z-index: 1045;
     border-radius: 20px;
-
+    justify-content: center;
 }
 .mfp-zoom-in.mfp-ready .popup {
     opacity: 1;
@@ -94,7 +94,7 @@
 }
 .button .login__button{
     align-items:center;
-    background-color:#0142eb;
+    background-color:blue;
     border-radius:24px;
     color:#fcfcfd;
     display:flex;
@@ -130,6 +130,13 @@
 }
 .subscription {
     position: relative;
+    flex-direction: row;
+   
+}
+.subscription__btn{
+    position: absolute;
+    top: 12px;
+    right: 20px;
 
 }
 .subscription__input{
@@ -143,6 +150,7 @@ font-family:Poppins;
 font-size:14px;
 line-height:24.0001px;
 padding:0px 48px 0px 14px;
+
 }
 
 .subscription__input {
@@ -157,9 +165,8 @@ padding:0px 48px 0px 14px;
     line-height: 1.71429;
     color: #23262F;
     transition: border-color .2s;
-}
 
-/*  */
+}
 input {
     writing-mode: horizontal-tb !important;
     text-rendering: auto;
@@ -182,6 +189,7 @@ input {
     border-style: inset;
     border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
     border-image: initial;
+
 }
 .login__foot {
     margin-top: 32px;
@@ -220,6 +228,7 @@ button.mfp-close, button.mfp-arrow {
     z-index: 1046;
     box-shadow: none;
     touch-action: manipulation;
+
 }
 .mfp-close {
     width: 44px;
@@ -255,52 +264,51 @@ button {
 input[type="submit"], button {
     cursor: pointer;
 }
+.btn-link {
+  text-decoration: none;
+  align-items: center;
+  background-color:#0142eb;
+  border-radius:24px;
+  color:#fcfcfd;
+  display:flex;
+  font-family:DM Sans;
+  font-weight: 500;
+  justify-content:center;
+  line-height:13px;
+  margin:0px 10px 0px 0px;
+  padding:0px 24px;
+  text-align:center;
+}
+.login__link{
+  text-decoration: none;
+  font-weight: bold;
+}
 </style>
 </head>
 
 <body>
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <h1>fbdrfbfgcv</h1>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div> -->
         <div class="mfp-content"><div class="popup popup_login" id="popup-login">
       <div class="login">
         <div class="login__item">
           <div class="login__title h3">Sign up on Fleet</div>
           <div class="login__info">Use Your OpenID to Sign up</div>
           <div class="login__btns">
-            <button class="button login__button">
-            <i class="fa-brands fa-google"></i><span>Google</span>
-            </button>
-            <button class="button-black login__button">
+          <button type="button" class="btn btn-link">
+            <i class="fa-brands fa-google"></i>
+            <span>Google</span>
+          </button>
             
+          <button type="button" class="btn btn-link"style="background-color: black;height: 40px;">
             <i class="fa-brands fa-apple"></i>
               <span>Apple</span>
             </button>
           </div>
           <div class="login__note">Or continue with email</div>
           <div class="subscription">
-            <input class="subscription__input" type="email" name="email" placeholder="Enter your email" required="">
+            <input class="subscription__input" type="email" name="email" placeholder="Enter your email" required="" >
             <button class="subscription__btn">
-              <svg class="icon icon-arrow-next">
-                <use xlink:href="#icon-arrow-next"></use>
-              </svg>
-            </button>
+            <i class="fa-solid fa-arrow-right"></i>
+            </button> 
           </div>
           <div class="login__foot">Already have an account? <a class="login__link" href="#">Login</a></div>
           <button title="Close (Esc)" type="button" class="mfp-close">×</button>
