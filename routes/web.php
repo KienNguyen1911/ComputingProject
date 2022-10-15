@@ -24,3 +24,7 @@ Route::get('/content', function () {
 Route::get ('/signup', function(){
     return view ('components.signup');
 });
+
+Route::get ('/signin', function(){
+    return view ('components.signin');
+});
