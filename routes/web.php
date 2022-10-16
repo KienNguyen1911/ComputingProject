@@ -28,3 +28,6 @@ Route::get('footer', function () {
 Route::get('/content', function () {
     return view('components.content');
 });
+Route::get('personal-info', function () {
+    return view('components.personal-info');
+});

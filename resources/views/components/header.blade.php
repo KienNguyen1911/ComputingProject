@@ -16,7 +16,7 @@
         <div class="container">
         {{-- Header  --}}
             <div class="header">
-                <div class="navbar">
+                {{-- <div class="navbar">
                     <div class="navbar-left">
                         <div class="navbar-logo">
                             <a href="index.html">
@@ -24,7 +24,7 @@
                             </a>
                         </div>
                         <div class="navbar-feature">
-                            <div class="nabar-feature__text">
+                            <div class="navbar-feature__text">
                                 Traverlers
                             </div>
                             <div class="navbar-feature__icon">
@@ -33,43 +33,42 @@
                         </div>
                     </div>
                     <div class="navbar-right">
-                        <div class="navbar-support">
+                        <a class="navbar-support" href="#">
                             Support
-                        </div>
-                        <div class="navbar-button">
+                        </a>
+                        <a class="navbar-button" href="">
                             List your property
-                        </div>
+                        </a>
                         <div class="navbar-notification">
                             <div class="navbar-icon__center">
-                                <i class="fa-regular fa-bell"></i>
+                                <i class="fa-regular fa-bell" style="font-size: 20px"></i>
                             </div>
                         </div>
                         <div class="navbar-profile">
                             <div class="navbar-icon__center">
-                                <i class="fa-regular fa-circle-user"></i>
+                                <i class="fa-solid fa-circle-user"></i>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+                @yield('navbar')
             </div>
         {{-- Background --}}
             <div class="background">
                 <div class="background-image">
-                    <img src="{{asset('img/main-pic-1.jpg')}}" style="border-radius: 25px"alt="Main">
-                </div>
-                <div class="background-text">
-                    <div class="background-text__title">
-                        Air, sleep, dream
+                    <img src="{{asset('img/main-pic-1.jpg')}}" style="border-radius: 25px; max-width: 100%"alt="Main">
+                    <div class="background-text">
+                        <div class="background-text__title">
+                            Air, sleep, dream
+                        </div>
+                        <div class="background-text__subtitle">
+                            Find and book a great experience.
+                        </div>
+                        <div class="background-text__button">
+                            Start your search
+                        </div>
                     </div>
-                    <div class="background-text__subtitle">
-                        Find and book a great experience.
-                    </div>
-                    <div class="background-text__button">
-                        Start your search
-                    </div>
-                </div>
-            </div>
-        {{--Search--}}
+                            {{--Search--}}
             <div class="search">
                 <div class="search-navbar">
                     <ul class="nav nav-tabs">
@@ -119,19 +118,21 @@
                             Travelers
                             <div class="search-bar__subtext">
                                 Travelers
+
                             </div>
                         </div>
                     </div>
                     <div class="search-bar">
                         <div class="search-bar__icon">
                             <div class="search-bar__icon__background">
-                                <i class="fa-solid fa-magnifying-glass" style="margin-left: 22.5px; margin-top: 22.5px"></i>
+                                <i class="fa-solid fa-magnifying-glass"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        {{--Search--}}
+                </div>
+            </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     </body>
