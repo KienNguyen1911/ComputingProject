@@ -1,0 +1,20 @@
+* {
+    font-family: 'DM Sans', sans-serif;
+    box-sizing: border-box;
+    width: auto;
+}
+.container{
+    width: 70%;
+}
+
+.breadcrum{
+    display: flex;
+}
+
+.home{
+    flex: 4;
+}
+
+.location{
+    flex: 1;
+}

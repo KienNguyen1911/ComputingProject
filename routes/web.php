@@ -28,3 +28,7 @@ Route::get('footer', function () {
 Route::get('/content', function () {
     return view('components.content');
 });
+
+Route::get('gosw', function () {
+    return view('components.gosw');
+});
