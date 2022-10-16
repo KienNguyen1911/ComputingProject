@@ -36,3 +36,7 @@ Route::get ('/signup', function(){
 Route::get ('/signin', function(){
     return view ('components.signin');
 });
+
+Route::get ('/browse', function(){
+    return view ('components.browse');
+});

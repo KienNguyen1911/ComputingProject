@@ -11,6 +11,11 @@
         <link href="{{asset('css/base.css')}}" rel="stylesheet">  
         <link rel="stylesheet" href="{{asset('css/test.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+        <style>
+            .navbar-icon__link{
+                color:#FCFCFD;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
@@ -46,7 +51,8 @@
                         </div>
                         <div class="navbar-profile">
                             <div class="navbar-icon__center">
-                                <i class="fa-regular fa-circle-user"></i>
+                                <a class="navbar-icon__link" href="signup">
+                                <i class="fa-regular fa-circle-user"></i></a>
                             </div>
                         </div>
                     </div>
