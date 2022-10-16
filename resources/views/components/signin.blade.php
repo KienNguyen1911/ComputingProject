@@ -97,7 +97,7 @@ border-radius: 24px;
 }
 .field__input, .field__textarea {
     width: 100%;
-    border-radius: 12px;
+    /* border-radius: 12px; */
     border: 2px solid #E6E8EC;
     box-shadow: none;
     background: none;
@@ -113,25 +113,73 @@ input, button {
     padding: 0;
     border: 0;
 }
-*, *:before, *:after {
-    box-sizing: inherit;
+
+/*  */
+.field__view {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 48px;
 }
-user agent stylesheet
-input[type="password" i] {
-    -webkit-text-security: disc !important;
-    padding: 1px 2px;
+/* div, input, textarea, select, button, h1, h2, h3, h4, h5, h6, a, span, a:focus {
+    outline: none;
+} */
+input, button {
+    margin: 0;
+    padding: 0;
+    border: 0;
 }
-user agent stylesheet
-input {
-    writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    </style>
+button {
+    background: none;
+}
+input[type="submit"], button {
+    cursor: pointer;
+}
+.login__form > .button {
+    width: 100%;
+    margin-top: 12px;
+}
+[class^="button"] {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 48px;
+    padding: 0 24px;
+    background: #3B71FE;
+    border-radius: 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    color: #FCFCFD;
+    transition: all .2s;
+}
+.login__foot {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.66667;
+    color: #353945;
+}
+.login__password {
+    color: #353945;
+}
+.login__link, .login__password {
+    font-weight: 600;
+    transition: color .2s;
+}
+a {
+    text-decoration: none;
+}
+.login__link{
+color:#FCFCFD;
+}
+</style>
 </head>
 <body>
+<div class="mfp-content"><div class="popup popup_login" id="popup-login">
 <div class="login__item" style="display: block;">
           <div class="login__title h3">Sign in</div>
           <div class="login__form">
@@ -139,15 +187,14 @@ input {
               <div class="field__wrap">
                 <input class="field__input" type="password" name="password" placeholder="Password" required="">
                 <button class="field__view">
-                  <svg class="icon icon-eye">
-                    <use xlink:href="#icon-eye"></use>
-                  </svg>
+                <i class="fa-solid fa-eye"></i>
                 </button>
               </div>
             </div>
-            <button class="button login__button">Login</button>
+            <button class="button login__button" ><a class="login__link" href="content">Login</a></button>
           </div>
           <div class="login__foot"><a class="login__password" href="#">Forgot password?</a></div>
+        </div>
         </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
