@@ -179,7 +179,7 @@
                     </div>
                 </div>
                 <div class="receipt-description row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 col-md-6 ">
                         <div class="receipt-item ">
                             <div class="receipt-icon">
                                 <i class="fa-regular fa-calendar-days"></i>
@@ -191,7 +191,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 col-md-6 ">
                         <div class="receipt-item ">
                             <div class="receipt-icon">
                                 <i class="fa-regular fa-calendar-days"></i>
@@ -203,7 +203,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 col-md-6 ">
                         <div class="receipt-item ">
                             <div class="receipt-icon">
                                 <i class="fa-regular fa-user"></i>

@@ -639,3 +639,10 @@ ol {
 .receipt-report:hover i {
     color: #3B71FE;
 }
+
+@media screen and (max-width: 768px) {
+    .receipt-description .col-lg-6:nth-child(2n) {
+        border: none;
+    }
+    
+}
