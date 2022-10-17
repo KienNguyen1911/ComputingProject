@@ -1,0 +1,17 @@
+.cover-head{
+    position: relative;
+}
+.cover-image{
+    width: 100%;
+    border-radius: 24px;
+}
+.cover-btn{
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    transition: opacity .2s;
+    color: #FCFCFD;
+    border: 2px solid #FCFCFD;
+    background: none;
+    font-weight: 600;
+}
