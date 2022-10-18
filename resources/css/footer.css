@@ -4,6 +4,9 @@
     max-width: 100%;
     font-family: 'Poppins', sans-serif;
 }
+body{
+    font-family: 'Poppins', sans-serif;
+}
 
 /* <!-- go somwwhere -->*/
 .gosw {
@@ -21,7 +24,7 @@
     padding: 80px;
 }
 
-.gosw-title .h2 {
+.gosw-title  {
     font-size: 48px;
     font-family: 'Poppins', sans-serif;
     ;

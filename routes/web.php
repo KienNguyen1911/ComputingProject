@@ -38,3 +38,10 @@ Route::get('personal-info', function () {
 Route::get('profile', function () {
     return view('components.profile');
 });
+Route::get('gosw', function () {
+    return view('components.gosw');
+});
+
+Route::get('confirm-pay', function () {
+    return view('components.confirm-pay');
+});

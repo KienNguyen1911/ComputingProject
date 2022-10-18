@@ -60,6 +60,32 @@
 
 
             </div>
+
+            <div class="gosw-menu row">
+                <div class="card  Col-lg-3 ">
+                    <div class="card-img">
+                        <a href=""><img style="border-top-right-radius: 24px;border-top-left-radius: 24px;"
+                            src="https://ui8-fleet-html.herokuapp.com/img/content/catalog-pic-1@2x.jpg" alt="logo"
+                            class="card-logo"></a>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-des">
+                            <div class="card-name">
+                                <a href="" style="color:black;"><p>the grand resort</p></a>
+                            </div>
+                            <div class="card-price" style="">
+                                <a href=""style="color:black;" >$267</a>
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="card-day">
+                            <p>Tue, Jul 20 - Fri, Jul 23</p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
     </div>
 
