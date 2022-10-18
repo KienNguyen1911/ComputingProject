@@ -271,7 +271,7 @@
                         </div>
                     </div>
                     <div class="profile-body">
-                        
+
                     </div>
                 </div>
                 <div class="comment col-lg-8"></div>
