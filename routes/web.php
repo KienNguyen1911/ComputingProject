@@ -45,3 +45,14 @@ Route::get('gosw', function () {
 Route::get('confirm-pay', function () {
     return view('components.confirm-pay');
 });
+Route::get ('/signup', function(){
+    return view ('components.signup');
+});
+
+Route::get ('/signin', function(){
+    return view ('components.signin');
+});
+
+Route::get ('/browse', function(){
+    return view ('components.browse');
+});
