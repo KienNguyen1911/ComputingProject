@@ -32,3 +32,9 @@ Route::get('/content', function () {
 Route::get('/home-details', function () {
     return view('home-details');
 });
+Route::get('personal-info', function () {
+    return view('components.personal-info');
+});
+Route::get('profile', function () {
+    return view('components.profile');
+});
