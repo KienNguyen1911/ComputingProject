@@ -92,159 +92,191 @@
     </div>
 
     <div class="section description">
-        <div class="description-center center row">
-            <div class="description-wrapper col-lg-7">
-                <div class="description-title">
-                    <h4 class="description-title h4">Private room in house</h4>
-                </div>
-                <div class="description-profile">
-                    <span>Hosted by</span>
-                    <div class="description-avatar">
-                        <img src="img/avatar.jpg" alt="">
+        <div class="description-center center">
+            <div class="row">
+                <div class="description-wrapper col-lg-7">
+                    <div class="description-title">
+                        <h4 class="description-title h4">Private room in house</h4>
                     </div>
-                    <div class="description-name">Zoe Towne</div>
-                </div>
-                <div class="description-parameters">
-                    <div class="description-parameter">
-                        <i class="fa-solid fa-house"></i>
-                        2 guests
-                    </div>
-                    <div class="description-parameter">
-                        <i class="fa-regular fa-flag"></i>
-                        1 bedroom
-                    </div>
-                    <div class="description-parameter">
-                        <i class="fa-regular fa-flag"></i>
-                        1 private bath
-                    </div>
-                </div>
-                <div class="description-content">
-                    <p>Described by Queenstown House & Garden magazine as having 'one of the best views we've ever seen' you will love relaxing in this newly built, architectural house sitting proudly on Queenstown Hill.</p>
-                    <p>Enjoy breathtaking 180' views of Lake Wakatipu from your well appointed & privately accessed bedroom with modern en suite and floor-to-ceiling windows.</p>
-                    <p>Your private patio takes in the afternoon sun, letting you soak up unparalleled lake and mountain views by day and the stars & city lights by night.</p>
-                </div>
-                <div class="description-info">Amenities</div>
-                <div class="description-options">
-                    <div class="description-option">
-                        <i class="fa-solid fa-wifi"></i>
-                        Free wifi 24/7
-                    </div>
-                    <div class="description-option">
-                        <i class="fa-solid fa-wifi"></i>
-                        Free wifi 24/7
-                    </div>
-                    <div class="description-option">
-                        <i class="fa-solid fa-wifi"></i>
-                        Free wifi 24/7
-                    </div>
-                    <div class="description-option">
-                        <i class="fa-solid fa-wifi"></i>
-                        Free wifi 24/7
-                    </div>
-                    <div class="description-option">
-                        <i class="fa-solid fa-wifi"></i>
-                        Free wifi 24/7
-                    </div>
-                    <div class="description-option">
-                        <i class="fa-solid fa-wifi"></i>
-                        Free wifi 24/7
-                    </div>
-                    <div class="description-option">
-                        <i class="fa-solid fa-wifi"></i>
-                        Free wifi 24/7
-                    </div>
-                    <div class="description-option">
-                        <i class="fa-solid fa-wifi"></i>
-                        Free wifi 24/7
-                    </div>
-                </div>
-                <div class="description-full"></div>
-            </div>
-            <div class="receipt col-lg-5">
-                <div class="receipt-head">
-                    <div class="receipt-details">
-                        <div class="receipt-cost">
-                            $109 <span>/night</span>
+                    <div class="description-profile">
+                        <span>Hosted by</span>
+                        <div class="description-avatar">
+                            <img src="img/avatar.jpg" alt="">
                         </div>
-                        <div class="receipt-rating">
-                            <div class="product-rating">
-                                <i class="fa-solid fa-star"></i>
-                                <div class="product-number">4.8</div>
-                                <div class="product-reviews">(256 reviews)</div>
-                            </div>
+                        <div class="description-name">Zoe Towne</div>
+                    </div>
+                    <div class="description-parameters">
+                        <div class="description-parameter">
+                            <i class="fa-solid fa-house"></i>
+                            2 guests
+                        </div>
+                        <div class="description-parameter">
+                            <i class="fa-regular fa-flag"></i>
+                            1 bedroom
+                        </div>
+                        <div class="description-parameter">
+                            <i class="fa-regular fa-flag"></i>
+                            1 private bath
                         </div>
                     </div>
-                    <div class="receipt-avatar">
-                        <img src="img/avatar.jpg" alt="">
+                    <div class="description-content">
+                        <p>Described by Queenstown House & Garden magazine as having 'one of the best views we've ever seen' you will love relaxing in this newly built, architectural house sitting proudly on Queenstown Hill.</p>
+                        <p>Enjoy breathtaking 180' views of Lake Wakatipu from your well appointed & privately accessed bedroom with modern en suite and floor-to-ceiling windows.</p>
+                        <p>Your private patio takes in the afternoon sun, letting you soak up unparalleled lake and mountain views by day and the stars & city lights by night.</p>
                     </div>
-                </div>
-                <div class="receipt-description row">
-                    <div class="col-lg-6 col-md-6 ">
-                        <div class="receipt-item ">
-                            <div class="receipt-icon">
-                                <i class="fa-regular fa-calendar-days"></i>
-                            </div>
-                            <div class="receipt-box">
-                                <div class="receipt-category">Check-in</div>
-                                <div class="receipt-subtitle">May 15, 2021</div>
-                            </div>
+                    <div class="description-info">Amenities</div>
+                    <div class="description-options">
+                        <div class="description-option">
+                            <i class="fa-solid fa-wifi"></i>
+                            Free wifi 24/7
+                        </div>
+                        <div class="description-option">
+                            <i class="fa-solid fa-wifi"></i>
+                            Free wifi 24/7
+                        </div>
+                        <div class="description-option">
+                            <i class="fa-solid fa-wifi"></i>
+                            Free wifi 24/7
+                        </div>
+                        <div class="description-option">
+                            <i class="fa-solid fa-wifi"></i>
+                            Free wifi 24/7
+                        </div>
+                        <div class="description-option">
+                            <i class="fa-solid fa-wifi"></i>
+                            Free wifi 24/7
+                        </div>
+                        <div class="description-option">
+                            <i class="fa-solid fa-wifi"></i>
+                            Free wifi 24/7
+                        </div>
+                        <div class="description-option">
+                            <i class="fa-solid fa-wifi"></i>
+                            Free wifi 24/7
+                        </div>
+                        <div class="description-option">
+                            <i class="fa-solid fa-wifi"></i>
+                            Free wifi 24/7
                         </div>
                     </div>
+                    <div class="description-full"></div>
+                </div>
+                <div class="receipt col-lg-5">
+                    <div class="receipt-head">
+                        <div class="receipt-details">
+                            <div class="receipt-cost">
+                                $109 <span>/night</span>
+                            </div>
+                            <div class="receipt-rating">
+                                <div class="product-rating">
+                                    <i class="fa-solid fa-star"></i>
+                                    <div class="product-number">4.8</div>
+                                    <div class="product-reviews">(256 reviews)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="receipt-avatar">
+                            <img src="img/avatar.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="receipt-description row">
+                        <div class="col-lg-6 col-md-6 ">
+                            <div class="receipt-item ">
+                                <div class="receipt-icon">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                </div>
+                                <div class="receipt-box">
+                                    <div class="receipt-category">Check-in</div>
+                                    <div class="receipt-subtitle">May 15, 2021</div>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="col-lg-6 col-md-6 ">
-                        <div class="receipt-item ">
-                            <div class="receipt-icon">
-                                <i class="fa-regular fa-calendar-days"></i>
-                            </div>
-                            <div class="receipt-box">
-                                <div class="receipt-category">Check-out</div>
-                                <div class="receipt-subtitle">May 22, 2021</div>
+                        <div class="col-lg-6 col-md-6 ">
+                            <div class="receipt-item ">
+                                <div class="receipt-icon">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                </div>
+                                <div class="receipt-box">
+                                    <div class="receipt-category">Check-out</div>
+                                    <div class="receipt-subtitle">May 22, 2021</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-lg-6 col-md-6 ">
-                        <div class="receipt-item ">
-                            <div class="receipt-icon">
-                                <i class="fa-regular fa-user"></i>
+                        <div class="col-lg-6 col-md-6 ">
+                            <div class="receipt-item ">
+                                <div class="receipt-icon">
+                                    <i class="fa-regular fa-user"></i>
+                                </div>
+                                <div class="receipt-box">
+                                    <div class="receipt-category">Guest</div>
+                                    <div class="receipt-subtitle">2 guests</div>
+                                </div>
                             </div>
-                            <div class="receipt-box">
-                                <div class="receipt-category">Guest</div>
-                                <div class="receipt-subtitle">2 guests</div>
-                            </div>                            
+                        </div>
+
+                    </div>
+                    <div class="receipt-btn">
+                        <span>Reserve</span>
+                    </div>
+                    <div class="receipt-table">
+                        <div class="receipt-line">
+                            <div class="receipt-cell">$119 x 7 nights</div>
+                            <div class="receipt-cell">$833</div>
+                        </div>
+                        <div class="receipt-line">
+                            <div class="receipt-cell">10% campaign discount</div>
+                            <div class="receipt-cell">-$125</div>
+                        </div>
+                        <div class="receipt-line">
+                            <div class="receipt-cell">Service fee</div>
+                            <div class="receipt-cell">$103</div>
+                        </div>
+                        <div class="receipt-line">
+                            <div class="receipt-cell">Total</div>
+                            <div class="receipt-cell">$833</div>
                         </div>
                     </div>
-
-                </div>
-                <div class="receipt-btn">
-                    <span>Reserve</span>
-                </div>
-                <div class="receipt-table">
-                    <div class="receipt-line">
-                        <div class="receipt-cell">$119 x 7 nights</div>
-                        <div class="receipt-cell">$833</div>
+                    <div class="receipt-foot">
+                        <button class="receipt-report">
+                            <i class="fa-solid fa-flag"></i>
+                            Report this property
+                        </button>
                     </div>
-                    <div class="receipt-line">
-                        <div class="receipt-cell">10% campaign discount</div>
-                        <div class="receipt-cell">-$125</div>
-                    </div>
-                    <div class="receipt-line">
-                        <div class="receipt-cell">Service fee</div>
-                        <div class="receipt-cell">$103</div>
-                    </div>
-                    <div class="receipt-line">
-                        <div class="receipt-cell">Total</div>
-                        <div class="receipt-cell">$833</div>
-                    </div>
-                </div>
-                <div class="receipt-foot">
-                    <button class="receipt-report">
-                        <i class="fa-solid fa-flag"></i>
-                        Report this property
-                    </button>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="section comments">
+        <div class="comments-center center">
+            <div class="row">
+                <div class="profile col-lg-4">
+                    <div class="profile-head">
+                        <div class="profile-line">
+                            <div class="profile-avatar">
+                                <img src="img/avatar.jpg" alt="">
+                            </div>
+                            <div class="profile-details">
+                                <div class="profile-man">Zoe towne</div>
+                                <div class="profile-rating">
+                                    <div class="product-rating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <div class="product-number">4.8</div>
+                                        <div class="product-reviews">(256 reviews)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-body">
+                        
+                    </div>
+                </div>
+                <div class="comment col-lg-8"></div>
+            </div>
+        </div>
     </div>
+
 </body>
