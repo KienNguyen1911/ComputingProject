@@ -49,17 +49,17 @@ margin-left: 10px;
     background-color: #777e9042;
     height: 1px;
     width: auto;
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .order-information{
     display: flex;
     flex-wrap: wrap;
-    margin-top: 32px;
-    padding: 8px;
+    margin-top: 30px;
+    padding: 5px;
 }
 .order-detail{
-    width: 45%;
+    width: 40%;
     padding: 12px;
 }
 
@@ -101,12 +101,30 @@ margin-left: auto;
     text-align: center;
 }
 
-.bill-guest{
-    width: 50%;
-    flex: 3;
+
+
+.bill-title{
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 32px;
+    padding-bottom: 25px;
 }
 
-.bill-day{
-    width: 50%;
-    flex: 3;
+ .email-title{
+font-family: 'Poppins', sans-serif;
+font-weight: bold;
+}
+.email-input-message{
+    text-overflow: clip;
+}
+
+.button-btn{
+    background-color: #2059ea;
+    color: azure;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+.confirm-btn :hover{
+    background-color:#2e25cd ;
+    transition: 0.5s;
 }
