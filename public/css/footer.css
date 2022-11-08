@@ -126,7 +126,7 @@
     padding: 62px 0 48px;
 }
 .footer{
-    
+    margin-top: 136px;
     width: auto;
     height: 273px;
     border-top: 1px solid rgb(187, 187, 187);
@@ -153,6 +153,9 @@ a{
     margin-top: 17px;
     margin-bottom: 14px;
 }
+.subscription {
+    position: relative;
+}
 .nutemail{
     height: 45px;
     border-radius: 60px;
@@ -160,8 +163,8 @@ a{
 }
 .nutxanh{
     position: absolute;
-    top: -15px;
-    right: 22px;
+    top: -64px;
+    right: 6px;
     width: 32px;
 }
 .footer-copyright{

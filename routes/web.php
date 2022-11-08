@@ -29,10 +29,30 @@ Route::get('/content', function () {
     return view('components.content');
 });
 
+Route::get('/home-details', function () {
+    return view('home-details');
+});
+Route::get('personal-info', function () {
+    return view('components.personal-info');
+});
+Route::get('profile', function () {
+    return view('components.profile');
+});
 Route::get('gosw', function () {
     return view('components.gosw');
 });
 
 Route::get('confirm-pay', function () {
     return view('components.confirm-pay');
+});
+Route::get ('/signup', function(){
+    return view ('components.signup');
+});
+
+Route::get ('/signin', function(){
+    return view ('components.signin');
+});
+
+Route::get ('/browse', function(){
+    return view ('components.browse');
 });
