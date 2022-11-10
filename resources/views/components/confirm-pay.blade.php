@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,16 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <!--fontonlin-->
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/confirm-pay.css')}}">
     <title>Document</title>
 </head>
-=======
-@include('components.head')
-<link rel="stylesheet" href="{{asset('css/components/confirm-pay.css')}}">
->>>>>>> KienNguyen
 
 <body>
     <div class="confirm-pay-container">
