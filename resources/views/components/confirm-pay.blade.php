@@ -101,17 +101,6 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
-            <div class="st">
-                <p>Free cancellation until 3:00 PM on May 15, 2021</p>
-            </div>
-        </div>
-    </div>
-    <script src="confirm-pay.js"></script>
-</body>
-
-</html>
-=======
 
         <div class="pay">
             <div class="pay-title">
@@ -164,4 +153,3 @@
         </div>
     </div>
 </body>
->>>>>>> KienNguyen

@@ -56,3 +56,11 @@ Route::get ('/signin', function(){
 Route::get ('/browse', function(){
     return view ('components.browse');
 });
+
+Route::prefix('admin')->group(function () {
+    Route::get('dashboard', function () { return view('admin.dashboard');}) -> name('admin.dashboard');
+    Route::get('user', function () {return view('admin.user');}) -> name('admin.user');
+    Route::get('login', function () {return view('admin.login');}) -> name('admin.login');
+    Route::get('tables', function () {return view('admin.tables');}) -> name('admin.tables');
+    Route::get('notifications', function () {return view('admin.notifications');}) -> name('admin.notifications');
+});
