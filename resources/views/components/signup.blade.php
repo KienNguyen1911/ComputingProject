@@ -167,30 +167,7 @@ padding:0px 48px 0px 14px;
     transition: border-color .2s;
 
 }
-input {
-    writing-mode: horizontal-tb !important;
-    text-rendering: auto;
-    color: fieldtext;
-    letter-spacing: normal;
-    word-spacing: normal;
-    line-height: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    display: inline-block;
-    text-align: start;
-    appearance: auto;
-    -webkit-rtl-ordering: logical;
-    cursor: text;
-    background-color: field;
-    margin: 0em;
-    padding: 1px 2px;
-    border-width: 2px;
-    border-style: inset;
-    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-    border-image: initial;
-
-}
+/*  */
 .login__foot {
     margin-top: 32px;
     text-align: center;
