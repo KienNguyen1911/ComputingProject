@@ -8,11 +8,16 @@
     <div class="mfp-content">
         <div class="popup popup_login" id="popup-login">
             <div class="login__item" style="display: block;">
+                <div class="social-container">
+                    <a href="{{ route('google.login') }}" class="social"><i class="fab fa-google-plus-g"></i></a>
+                </div>
+
                 <div class="login__title h3">Sign in</div>
                 <div class="login__form">
                     <div class="field field_view">
                         <div class="field__wrap">
-                            <input class="field__input" type="password" name="password" placeholder="Password" required="">
+                            <input class="field__input" type="password" name="password" placeholder="Password"
+                                required="">
                             <button class="field__view">
                                 <i class="fa-solid fa-eye"></i>
                             </button>
