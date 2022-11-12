@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,7 +60,13 @@ Route::get ('/browse', function(){
 Route::prefix('admin')->group(function () {
     Route::get('dashboard', function () { return view('admin.dashboard');}) -> name('admin.dashboard');
     Route::get('user', function () {return view('admin.user');}) -> name('admin.user');
-    Route::get('login', function () {return view('admin.login');}) -> name('admin.login');
+    Route::get('demo', function () {return view('admin.login');}) -> name('admin.demo');
     Route::get('tables', function () {return view('admin.tables');}) -> name('admin.tables');
     Route::get('notifications', function () {return view('admin.notifications');}) -> name('admin.notifications');
 });
+
+Route::prefix('google')->name('google.')->group(function () {
+    Route::get('login', [LoginController::class, 'loginWithGoogle'])->name('login');
+    Route::any('callback', [LoginController::class, 'callBackFromGoogle'])->name('callback');
+});
+
