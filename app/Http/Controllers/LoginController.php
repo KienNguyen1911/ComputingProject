@@ -4,24 +4,17 @@ namespace App\Http\Controllers;
 
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Http\Request;
+// use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use App\Models\User;
 
 class LoginController extends Controller
 {
-    //
-    public function index()
-    {
-        return view('components.signup');
-    }
-
     public function loginWithGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
-
     public function callBackFromGoogle()
     {
         $googleUser = Socialite::driver('google')->user();
@@ -29,14 +22,13 @@ class LoginController extends Controller
         $user = User::updateOrCreate([
             'google_id' => $googleUser->getId(),
         ], [
-            'name' => $googleUser->getName(),
-            'email' => $googleUser->getEmail(),
-            'avatar' => $googleUser->getAvatar(),
-            'password' => Hash::make('12345678'),
+            'user_name' => $googleUser->getName(),
+            'user_email' => $googleUser->getEmail(),
+            'user_image' => $googleUser->getAvatar(),
+            'user_password' => Hash::make('12345678'),
         ]);
 
         Auth::login($user);
         return redirect('/');
     }
-
 }
