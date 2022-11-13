@@ -15,6 +15,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- CSS Files -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
@@ -36,41 +39,47 @@
             </div>
             <div class="sidebar-wrapper" id="sidebar-wrapper">
                 <ul class="nav navUL">
-                    <li class=" {{ (request()->is('admin/dashboard')) ? 'active' : '' }}">
+                    <li class=" {{ request()->is('admin/dashboard') ? 'active' : '' }}">
                         <a href="{{ route('admin.dashboard') }}">
                             <i class="now-ui-icons design_app"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class=" {{ (request()->is('admin/login')) ? 'active' : '' }}">
-                        <a href="{{ route('admin.login') }}">
+                    <li class=" {{ request()->is('admin/demo') ? 'active' : '' }}">
+                        <a href="{{ route('admin.demo') }}">
                             <i class="now-ui-icons education_atom"></i>
-                            <p>Login</p>
+                            <p>Demo</p>
                         </a>
                     </li>
 
-                    <li class="{{ (request()->is('admin/notifications')) ? 'active' : '' }} ">
+                    <li class="{{ request()->is('admin/notifications') ? 'active' : '' }} ">
                         <a href="{{ route('admin.notifications') }}">
                             <i class="now-ui-icons ui-1_bell-53"></i>
                             <p>Notifications</p>
                         </a>
                     </li>
-                    <li class="{{ (request()->is('admin/user')) ? 'active' : '' }}">
+                    <li class="{{ request()->is('admin/user') ? 'active' : '' }}">
                         <a href="{{ route('admin.user') }}">
                             <i class="now-ui-icons users_single-02"></i>
                             <p>User Profile</p>
                         </a>
                     </li>
-                    <li class="{{ (request()->is('admin/tables')) ? 'active' : '' }}">
+                    <li class="{{ request()->is('admin/tables') ? 'active' : '' }}">
                         <a href="{{ route('admin.tables') }}">
                             <i class="now-ui-icons design_bullet-list-67"></i>
                             <p>Table List</p>
                         </a>
                     </li>
-                    <li >
+                    <li>
                         <a href="{{ route('admin.dashboard') }}">
                             <i class="now-ui-icons location_map-big"></i>
                             <p>Maps</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('logout') }}">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                            <p>Logout</p>
                         </a>
                     </li>
                 </ul>
@@ -117,8 +126,8 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="now-ui-icons location_world"></i>
                                     <p>
                                         <span class="d-lg-none d-md-block">Some Actions</span>
@@ -132,13 +141,21 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <i class="now-ui-icons users_single-02"></i>
-                                    <p>
-                                        <span class="d-lg-none d-md-block">Account</span>
-                                    </p>
-                                </a>
+                                @if (Auth::check())
+                                    <a class="nav-link" href="#pablo">
+                                        <img src="{{  }}" alt="" srcset="">
+                                        hello
+                                    </a>
+                                @else
+                                    <a class="nav-link" href="#pablo">
+                                        <i class="now-ui-icons users_single-02"></i>
+                                        <p>
+                                            <span class="d-lg-none d-md-block">Account</span>
+                                        </p>
+                                    </a>
+                                @endif
                             </li>
+
                         </ul>
                     </div>
                 </div>
