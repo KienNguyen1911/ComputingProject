@@ -5,7 +5,6 @@ mfp-auto-cursor .mfp-content {
 .mfp-inline-holder .mfp-content,
 .mfp-ajax-holder .mfp-content {
     width: 100%;
-
 }
 
 .mfp-content {
@@ -30,11 +29,9 @@ mfp-auto-cursor .mfp-content {
     transition: all 0.2s ease-in-out;
     -webkit-transform: scale(0.8);
     transform: scale(0.8);
-
 }
 
 @media only screen and (max-width: 767px) {
-
     .popup_login {
         padding: 32px 24px;
     }
@@ -44,13 +41,12 @@ mfp-auto-cursor .mfp-content {
     max-width: 544px;
     padding: 72px 96px;
     float: center;
-
 }
 
 .popup {
     width: 100%;
     margin: auto;
-    background: #FCFCFD;
+    background: #fcfcfd;
     border-radius: 16px;
     box-shadow: 0px 64px 64px -48px rgb(15 15 15 / 8%);
     z-index: 2;
@@ -72,7 +68,7 @@ mfp-auto-cursor .mfp-content {
 .h3 {
     font-size: 40px;
     line-height: 1.2;
-    letter-spacing: -.01em;
+    letter-spacing: -0.01em;
 }
 
 .hero,
@@ -80,7 +76,7 @@ mfp-auto-cursor .mfp-content {
 .h2,
 .h3,
 .h4 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: "DM Sans", sans-serif;
     font-weight: 700;
 }
 
@@ -109,15 +105,15 @@ mfp-auto-cursor .mfp-content {
 .field__textarea {
     width: 100%;
     /* border-radius: 12px; */
-    border: 2px solid #E6E8EC;
+    border: 2px solid #e6e8ec;
     box-shadow: none;
     background: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 14px;
     line-height: 1.71429;
     font-weight: 500;
-    color: #23262F;
-    transition: border-color .2s;
+    color: #23262f;
+    transition: border-color 0.2s;
 }
 
 input,
@@ -155,7 +151,7 @@ button {
     cursor: pointer;
 }
 
-.login__form>.button {
+.login__form > .button {
     width: 100%;
     margin-top: 12px;
 }
@@ -166,15 +162,15 @@ button {
     align-items: center;
     height: 48px;
     padding: 0 24px;
-    background: #3B71FE;
+    background: #3b71fe;
     border-radius: 24px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: "DM Sans", sans-serif;
     font-size: 16px;
     font-weight: 700;
     line-height: 1;
     text-align: center;
-    color: #FCFCFD;
-    transition: all .2s;
+    color: #fcfcfd;
+    transition: all 0.2s;
 }
 
 .login__foot {
@@ -192,13 +188,29 @@ button {
 .login__link,
 .login__password {
     font-weight: 600;
-    transition: color .2s;
+    transition: color 0.2s;
 }
 
 a {
     text-decoration: none;
 }
 
+.login__note {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.66667;
+    color: #353945;
+}
+
+.login__btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+    spacing-between: 16px;
+}
+
 .login__link {
-    color: #FCFCFD;
+    text-decoration: none;
+    font-weight: bold;
 }
