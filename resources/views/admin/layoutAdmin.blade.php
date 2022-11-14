@@ -141,19 +141,13 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                @if (Auth::check())
                                     <a class="nav-link" href="#pablo">
-                                        <img src="{{  }}" alt="" srcset="">
-                                        hello
-                                    </a>
-                                @else
-                                    <a class="nav-link" href="#pablo">
-                                        <i class="now-ui-icons users_single-02"></i>
+                                        <img src="{{Auth::user()->avatar_original}}" alt="" srcset="" style="border-radius: 50%; width:30px">
                                         <p>
                                             <span class="d-lg-none d-md-block">Account</span>
                                         </p>
                                     </a>
-                                @endif
+                                {{-- {{Auth::user()->user_name}} --}}
                             </li>
 
                         </ul>

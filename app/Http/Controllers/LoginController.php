@@ -12,9 +12,14 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
-    public function getSignin() 
+    public function getSignin()
     {
         return view('components.signin');
+    }
+
+    public function getSignup()
+    {
+        return view('components.signup');
     }
 
     public function loginWithGoogle()
@@ -25,40 +30,37 @@ class LoginController extends Controller
     {
         try {
             $user = Socialite::driver('google')->user();
-            $is_user = User::where('user_email', $user->getEmail())->first();
-            if(!$is_user){
+            $is_user = User::where('email', $user->getEmail())->first();
+            if (!$is_user) {
 
                 $saveUser = User::updateOrCreate([
                     'google_id' => $user->getId(),
-                ],[
+                ], [
                     'google_id' => $user->getId(),
-                    'user_name' => $user->getName(),
-                    'user_email' => $user->getEmail(),
-                    'user_image' => $user->getAvatar(),
-                    'user_password' => Hash::make('12345678'),
+                    'name' => $user->getName(),
+                    'email' => $user->getEmail(),
+                    'avatar_original' => $user->getAvatar(),
+                    'password' => Hash::make('password'),
                     'email_verified_at' => now(),
                 ]);
-                // $user_role = 'admin';
-                // $saveUser->user_role = $user_role;
                 $saveUser->save();
-                Auth::login($saveUser);
-                return redirect()->route('welcome');
-
-            }else{
-                $saveUser = User::where('user_email',  $user->getEmail())->update([
+                // Auth::login($saveUser);
+                // if (Auth::user()->user_role == 'admin') {
+                //     return redirect()->route('admin.dashboard');
+                // }
+            } else {
+                $saveUser = User::where('email',  $user->getEmail())->update([
                     'google_id' => $user->getId(),
-                    'user_image' => $user->getAvatar(),
+                    'avatar_original' => $user->getAvatar(),
                 ]);
-                $saveUser = User::where('user_email', $user->getEmail())->first();
+                $saveUser = User::where('email', $user->getEmail())->first();
             }
-            Auth::login($saveUser);
-            // $success='Logged Successfully!';
-            if(Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff'){
-                return view('admin.dashboard');
-            }else{
+            Auth::loginUsingId($saveUser->id);
+            if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
+                return redirect()->route('admin.dashboard');
+            } else {
                 return redirect()->route('welcome');
             }
-
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -66,28 +68,41 @@ class LoginController extends Controller
 
     public function postLogin(Request $request)
     {
-        $credentials = $request->only('user_email', 'user_password');
+        $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            $success='Logged Successfully!';
-            if(Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff'){
-                return redirect()->route('admin.dashboard');
-            }else{
+            $success = 'Logged Successfully!';
+            if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
+                return route('admin.dashboard');
+            } else {
                 return redirect()->route('welcome');
             }
-        }else{
-            $error='Email or Password is incorrect!';
-            return redirect()->route('signin')->with('error',$error);
+        } else {
+            $error = 'Email or Password is incorrect!';
+            return redirect()->route('signin')->with('error', $error);
         }
+    }
+
+    public function postSignup(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|same:password',
+        ]);
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->user_role = 'user';
+        $user->save();
+        $success = 'Registered Successfully!';
+        return redirect()->route('signin')->with('success', $success);
     }
 
     public function logout()
     {
-        if(Auth::check()){
-            Auth::logout();
-            return redirect()->route('signin');
-        }else{
-            return redirect()->route('welcome');
-        }
+        Auth::logout();
+        return redirect()->route('signin');
     }
-
 }
