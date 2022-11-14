@@ -1,3 +1,8 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 .mfp-auto-cursor .mfp-content {
     cursor: auto;
 }
@@ -11,7 +16,7 @@
     position: relative;
     display: flex;
     vertical-align: middle;
-    margin: 100 auto;
+    /* margin: 100 auto; */
     text-align: left;
     z-index: 1045;
     border-radius: 20px;

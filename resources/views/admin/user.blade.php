@@ -92,8 +92,8 @@
                 <div class="card-body">
                     <div class="author">
                         <a href="#">
-                            <img class="avatar border-gray" src="../img/mike.jpg" alt="...">
-                            <h5 class="title">Mike Andrew</h5>
+                            <img class="avatar border-gray" src="{{Auth::user()->avatar_original}}" alt="...">
+                            <h5 class="title">{{Auth::user()->name}}</h5>
                         </a>
                         <p class="description">
                             michael24

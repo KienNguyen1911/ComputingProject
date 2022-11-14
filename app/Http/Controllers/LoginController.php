@@ -2,37 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Http\Request;
+// use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
-    public function logout()
-    {
-        Auth::logout();
-        return redirect()->route('login');
-    }
-    public function loginWithEmail()
+    public function getSignin()
     {
         return view('components.signin');
     }
-    public function postLoginEmail(Request $request)
+
+    public function getSignup()
     {
-        $credentials = $request->only('user_email', 'user_password');
-        if (Auth::attempt($credentials)) {
-            if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
-                return redirect()->route('admin.dashboard');
-            } else {
-                return redirect()->route('/');
-            }
-        } else {
-            return redirect()->route('login')->with('error', 'Email or password is incorrect');
-        }
+        return view('components.signup');
     }
+
     public function loginWithGoogle()
     {
         return Socialite::driver('google')->redirect();
@@ -41,85 +30,79 @@ class LoginController extends Controller
     {
         try {
             $user = Socialite::driver('google')->user();
-            $isUser = User::where('google_id', $user->getId())->first();
-            if (!$isUser) {
-                $newUser = User::updateorcreate([
+            $is_user = User::where('email', $user->getEmail())->first();
+            if (!$is_user) {
+
+                $saveUser = User::updateOrCreate([
                     'google_id' => $user->getId(),
                 ], [
-                    'user_name' => $user->getName(),
-                    'user_email' => $user->getEmail(),
-                    'user_password' => Hash::make('12345678'),
-                    'user_image' => $user->getAvatar(),
+                    'google_id' => $user->getId(),
+                    'name' => $user->getName(),
+                    'email' => $user->getEmail(),
+                    'avatar_original' => $user->getAvatar(),
+                    'password' => Hash::make('password'),
                     'email_verified_at' => now(),
-                    'user_role' => 'user',
                 ]);
-                $newUser->save();
-                Auth::login($newUser);
-                return redirect('/');
+                $saveUser->save();
+                // Auth::login($saveUser);
+                // if (Auth::user()->user_role == 'admin') {
+                //     return redirect()->route('admin.dashboard');
+                // }
             } else {
-                Auth::login($isUser);
-                if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
-                    return redirect('/admin/dashboard');
-                } else {
-                    return redirect('/');
-                }
+                $saveUser = User::where('email',  $user->getEmail())->update([
+                    'google_id' => $user->getId(),
+                    'avatar_original' => $user->getAvatar(),
+                ]);
+                $saveUser = User::where('email', $user->getEmail())->first();
             }
-        } catch (\Exception $e) {
-            dd($e->getMessage());
+            Auth::loginUsingId($saveUser->id);
+            if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->route('welcome');
+            }
+        } catch (\Throwable $th) {
+            throw $th;
         }
     }
-    public function loginWithFacebook()
+
+    public function postLogin(Request $request)
     {
-        return Socialite::driver('facebook')->redirect();
-    }
-    public function callBackFromFacebook()
-    {
-        try {
-            $user = Socialite::driver('facebook')->user();
-            $isUser = User::where('facebook_id', $user->getId())->first();
-            if (!$isUser) {
-                $newUser = User::updateorcreate([
-                    'facebook_id' => $user->getId(),
-                ], [
-                    'user_name' => $user->getName(),
-                    'user_email' => $user->getEmail(),
-                    'user_password' => Hash::make('12345678'),
-                    'user_image' => $user->getAvatar(),
-                    'email_verified_at' => now(),
-                    'user_role' => 'user',
-                ]);
-                $newUser->save();
-                Auth::login($newUser);
-                return redirect('/');
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $success = 'Logged Successfully!';
+            if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
+                return route('admin.dashboard');
             } else {
-                Auth::login($isUser);
-                if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
-                    return redirect('/admin/dashboard');
-                } else {
-                    return redirect('/');
-                }
+                return redirect()->route('welcome');
             }
-        } catch (\Exception $e) {
-            dd($e->getMessage());
+        } else {
+            $error = 'Email or Password is incorrect!';
+            return redirect()->route('signin')->with('error', $error);
         }
     }
-    public function getSignup()
-    {
-        return view('components.signup');
-    }
+
     public function postSignup(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|same:password',
+        ]);
         $user = new User();
-        $user->user_name = $request->firstname . ' ' . $request->lastname;
-        $user->user_email = $request->email;
-        $user->user_password = Hash::make($request->user_password);
-        $user->email_verified_at = now();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
         $user->user_role = 'user';
-        if ($_POST["password"] === $_POST["confirm_password"]) {
-            $user->save();
-            return redirect()->route('login');
-        } else {
-            return redirect()->route('signup')->with('error', 'Passwords are not match');
-        }
+        $user->save();
+        $success = 'Registered Successfully!';
+        return redirect()->route('signin')->with('success', $success);
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('signin');
     }
 }

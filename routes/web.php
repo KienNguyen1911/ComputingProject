@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,75 +18,42 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('header', function () {
     return view('components.header');
 });
 
-Route::get('footer', function () {
-    return view('components.footer');
-});
-
-Route::get('/content', function () {
-    return view('components.content');
-});
-
 Route::get('/home-details', function () {
     return view('home-details');
-});
+})->name('home-details');
 Route::get('personal-info', function () {
     return view('components.personal-info');
 });
 Route::get('profile', function () {
     return view('components.profile');
 });
-Route::get('gosw', function () {
-    return view('components.gosw');
-});
 
 Route::get('confirm-pay', function () {
     return view('components.confirm-pay');
 });
+Route::get('/signup', [LoginController::class, 'getSignup'])->name('signup');
+Route::post('/signup', [LoginController::class, 'postSignup'])->name('postSignup');
+Route::get('/signin', [LoginController::class, 'getSignin'])->name('signin');
+Route::post('/signin', [LoginController::class, 'postLogin'])->name('postSignin');
 
-//Login with Email
-Route::get('/signin', [LoginController::class, 'loginWithEmail'])->name('login');
-Route::post('/signin', [LoginController::class, 'postLoginEmail'])->name('postLogin');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-//Login with Google
+Route::prefix('admin')->group( function () {
+    Route::get('/dashboard',[DashboardController::class, 'getDashboard'])->name('admin.dashboard');
+    Route::get('/demo',[DashboardController::class, 'getDemo'])->name('admin.demo');
+    Route::get('/notifications',[DashboardController::class, 'getNotifications'])->name('admin.notifications');
+    Route::get('/tables',[DashboardController::class, 'getTables'])->name('admin.tables');
+    Route::get('/user',[DashboardController::class, 'getUser'])->name('admin.user');
+});
+
 Route::prefix('google')->name('google.')->group(function () {
     Route::get('login', [LoginController::class, 'loginWithGoogle'])->name('login');
     Route::any('callback', [LoginController::class, 'callBackFromGoogle'])->name('callback');
 });
 
-//Login with Facebook
-Route::prefix('facebook')->name('facebook.')->group(function () {
-    Route::get('login', [LoginController::class, 'loginWithFacebook'])->name('login');
-    Route::any('callback', [LoginController::class, 'callBackFromFacebook'])->name('callback');
-});
-
-//Signup with Email
-Route::get('/signup', [LoginController::class, 'getSignup'])->name('signup');
-Route::post('/signup', [LoginController::class, 'postSignup'])->name('postSignup');
-
-Route::get('/browse', function () {
-    return view('components.browse');
-});
-
-Route::prefix('admin')->group(function () {
-    Route::get('dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-    Route::get('user', function () {
-        return view('admin.user');
-    })->name('admin.user');
-    Route::get('login', function () {
-        return view('admin.login');
-    })->name('admin.login');
-    Route::get('tables', function () {
-        return view('admin.tables');
-    })->name('admin.tables');
-    Route::get('notifications', function () {
-        return view('admin.notifications');
-    })->name('admin.notifications');
-});

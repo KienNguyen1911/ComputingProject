@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->increments('feedback_id');
 
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('user_id')->on('users')->nullable();
+            $table->unsignedInteger('id');
+            $table->foreign('id')->references('id')->on('users')->nullable();
             $table->unsignedInteger('reservation_id');
             $table->foreign('reservation_id')->references('reservation_id')->on('reservation')->nullable();
 
