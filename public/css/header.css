@@ -1,5 +1,4 @@
 .header {
-    position: relative;
     display: flex;
     align-items: center;
 }
@@ -21,16 +20,21 @@
     align-items: center;
     width: 100%;
     margin-left: 50px;
-    color: #777e90;
     font-size: 14px;
     font-weight: 700;
     line-height: 16px;
+    color: #777e90;
 }
 .navbar-feature__text {
 }
 .navbar-feature__icon {
     margin-left: 10px;
 }
+.navbar-feature:hover {
+    color: #000;
+    cursor: pointer;
+}
+
 .navbar-right {
     display: flex;
     align-items: center;
@@ -42,6 +46,11 @@
     font-size: 14px;
     font-weight: 700;
     line-height: 16px;
+    text-decoration: none;
+}
+.navbar-support:hover {
+    color: #000;
+    cursor: pointer;
 }
 .navbar-button {
     display: flex;
@@ -49,51 +58,63 @@
     align-items: center;
     width: 150px;
     height: 40px;
+    border: 1px solid #e3dfdf;
     border-radius: 20px;
-    background-color: #f7f7f7;
+    background-color: #fff;
     color: #23262f;
     font-size: 14px;
     font-weight: 700;
     line-height: 16px;
+    text-decoration: none;
+}
+.navbar-button:hover {
+    color: #fff;
+    background-color: #23262f;
+    cursor: pointer;
 }
 .navbar-notification {
     margin-left: 50px;
-    width: 40px;
-    height: 40px;
     border-radius: 50%;
     background-color: #f7f7f7;
     color: #777e90;
-    font-size: 14px;
-    font-weight: 700;
     line-height: 16px;
+}
+.navbar-notification:hover {
+    color: #000;
+    cursor: pointer;
 }
 .navbar-profile {
     margin-left: 50px;
-    width: 40px;
-    height: 40px;
     border-radius: 50%;
-    background-color: #219cff;
-    color: #777e90;
+    background-color: #fff;
+    color: #219cff;
     font-size: 14px;
     font-weight: 700;
     line-height: 16px;
 }
+.navbar-profile:hover {
+    color: #085ddb;
+    cursor: pointer;
+}
+.navbar-profile-card {
+    visibility: hidden;
+    position: absolute;
+}
 .navbar-icon__center {
-    margin-left: 12.5px;
-    margin-top: 12.5px;
+    font-size: 40px;
 }
 .background {
-    position: absolute;
+    position: relative;
 }
 .background-image {
     display: flex;
     justify-content: center;
-    position: absolute;
 }
 .background-text {
-    position: relative;
     max-width: 600px;
-    margin: 160px 80px;
+    position: absolute;
+    top: 80px;
+    left: 80px;
 }
 .background-text__title {
     font-size: 96px;
@@ -121,19 +142,23 @@
     font-weight: 700;
     line-height: 16px;
 }
+.background-text__button:hover {
+    background-color: #085ddb;
+    cursor: pointer;
+}
 .search {
-    position: relative;
+    position: absolute;
     border-radius: 24px;
     background-color: #fcfcfd;
     box-shadow: #0f0f0f 0px 40px 64px -32px;
     font-size: 14px;
     line-height: 24.0001px;
-    max-width: 900px;
+    width: 80%;
     height: 248px;
-    margin: 600px auto;
+    bottom: -70px;
+    margin: 0 10%;
 }
 .search-navbar {
-    position: absolute;
     margin: 40px;
 }
 
@@ -144,10 +169,9 @@
 }
 .search-bar {
     display: flex;
-    margin-top: 140px;
 }
 .search-bar__icon {
-
+    font-size: 25px;
 }
 .search-bar__text {
     margin-left: 10px;
@@ -161,15 +185,17 @@
     font-weight: 400;
     line-height: 30px;
     font-size: 16px;
-    color: #777E90;
+    color: #777e90;
 }
-.search-bar__icon__background{
-    width: 60px;
-    height: 60px;
+.search-bar__icon__background {
     border-radius: 50%;
     background-color: #219cff;
-    color: #777e90;
-    font-size: 14px;
+    color: #f2f3f7;
     font-weight: 700;
     line-height: 16px;
+    padding: 20px;
+}
+
+.nav-items__icon__position {
+    margin-right: 10px;
 }

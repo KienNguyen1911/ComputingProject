@@ -1,0 +1,310 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.mfp-auto-cursor .mfp-content {
+    cursor: auto;
+}
+
+.mfp-inline-holder .mfp-content,
+.mfp-ajax-holder .mfp-content {
+    width: 100%;
+}
+
+.mfp-content {
+    position: relative;
+    display: flex;
+    vertical-align: middle;
+    /* margin: 100 auto; */
+    text-align: left;
+    z-index: 1045;
+    border-radius: 20px;
+    justify-content: center;
+}
+
+.mfp-zoom-in.mfp-ready .popup {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.mfp-zoom-in .popup {
+    opacity: 0;
+    transition: all 0.2s ease-in-out;
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+}
+
+@media only screen and (max-width: 767px) {
+    .popup_login {
+        padding: 32px 24px;
+    }
+}
+
+.popup_login {
+    max-width: 544px;
+    padding: 72px 96px;
+    float: center;
+}
+
+.popup {
+    width: 100%;
+    margin: auto;
+    background: #fcfcfd;
+    border-radius: 16px;
+    box-shadow: 0px 64px 64px -48px rgb(15 15 15 / 8%);
+    z-index: 2;
+    float: center;
+}
+
+.login__item:first-child {
+    display: block;
+}
+
+.login__item {
+    display: none;
+}
+
+.login__title {
+    text-align: center;
+}
+
+.h3 {
+    font-size: 40px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+.hero,
+.h1,
+.h2,
+.h3,
+.h4 {
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+}
+
+.login__info {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #777e90;
+}
+
+.button .login__button {
+    align-items: center;
+    background-color: blue;
+    border-radius: 24px;
+    color: #fcfcfd;
+    display: flex;
+    font-family: DM Sans;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 16px;
+    padding: 0px 24px;
+    text-align: center;
+}
+
+.button-black .login__button {
+    align-items: center;
+    background-color: #23262f;
+    border-radius: 24px;
+    color: #fcfcfd;
+    display: flex;
+    font-family: DM Sans;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 16px;
+    padding: 0px 24px;
+    text-align: center;
+}
+
+.login .subscription {
+    margin-top: 32px;
+}
+
+.subscription {
+    position: relative;
+    flex-direction: row;
+    display: flex
+}
+
+.subscription__btn {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+}
+
+.subscription__input {
+    border-color: #e6e8ec;
+    border-radius: 24px;
+    border-style: solid;
+    border-width: 2px;
+    color: #23262f;
+    display: inline-block;
+    font-family: Poppins;
+    font-size: 14px;
+    line-height: 24.0001px;
+    padding: 0px 48px 0px 14px;
+}
+
+.subscription__input {
+    width: 100%;
+    height: 48px;
+    padding: 0 48px 0 14px;
+    border-radius: 24px;
+    background: none;
+    border: 2px solid #e6e8ec;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    line-height: 1.71429;
+    color: #23262f;
+    transition: border-color 0.2s;
+}
+
+.subscription__input__separate {
+    width: 50%;
+    height: 48px;
+    padding: 0 48px 0 14px;
+    border-radius: 24px;
+    background: none;
+    border: 2px solid #e6e8ec;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    line-height: 1.71429;
+    color: #23262f;
+    transition: border-color 0.2s;
+}
+
+input {
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+
+.login__foot {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.66667;
+    color: #353945;
+}
+
+.popup .mfp-close {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    line-height: normal;
+    opacity: 1;
+    border: 1px solid transparent;
+    box-shadow: 0px 8px 16px rgb(15 15 15 / 10%);
+    font-size: 0;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.mfp-close-btn-in .mfp-close {
+    color: black;
+}
+
+button.mfp-close,
+button.mfp-arrow {
+    overflow: visible;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    display: block;
+    outline: none;
+    padding: 0;
+    z-index: 1046;
+    box-shadow: none;
+    touch-action: manipulation;
+}
+
+.mfp-close {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-decoration: none;
+    text-align: center;
+    opacity: 0.65;
+    padding: 0 0 18px 10px;
+    color: #fff;
+    font-style: normal;
+    font-size: 28px;
+    font-family: Arial, Baskerville, monospace;
+}
+
+.mfp-close,
+.mfp-arrow,
+.mfp-preloader,
+.mfp-counter {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input,
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+button {
+    background: none;
+}
+
+input[type="submit"],
+button {
+    cursor: pointer;
+}
+
+.btn-link {
+    text-decoration: none;
+    align-items: center;
+    background-color: #0142eb;
+    border-radius: 24px;
+    color: #fcfcfd;
+    display: flex;
+    font-family: DM Sans;
+    font-weight: 500;
+    justify-content: center;
+    line-height: 13px;
+    margin: 0px 10px 0px 0px;
+    padding: 0px 24px;
+    text-align: center;
+}
+
+.login__link {
+    text-decoration: none;
+    font-weight: bold;
+}
