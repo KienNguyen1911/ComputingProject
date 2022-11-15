@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -49,8 +53,22 @@ Route::prefix('admin')->group( function () {
     Route::get('/demo',[DashboardController::class, 'getDemo'])->name('admin.demo');
     Route::get('/notifications',[DashboardController::class, 'getNotifications'])->name('admin.notifications');
     Route::get('/tables',[DashboardController::class, 'getTables'])->name('admin.tables');
-    Route::get('/user',[DashboardController::class, 'getUser'])->name('admin.user');
+    Route::get('/user',[ProfileController::class, 'getProfile'])->name('admin.user');
+    Route::post('/user',[ProfileController::class, 'postProfile'])->name('postProfile');
+    // Type
+    
 });
+Route::get('/type',[TypeController::class, 'getType'])->name('view.type');
+Route::get('/type-add',[TypeController::class, 'getAddType'])->name('add.type');
+Route::post('/type-add',[TypeController::class, 'postAddType'])->name('postAddType');
+Route::get('/type-edit/{id}',[TypeController::class, 'getEditType'])->name('edit.type');
+Route::post('/type-edit/{id}',[TypeController::class, 'postEditType'])->name('postEditType');
+Route::get('/type-delete/{id}',[TypeController::class, 'getDeleteType'])->name('delete.type');
+
+Route::get('home', [App\Http\Controllers\HomeController::class, 'getHome'])->name('view.home');
+Route::get('add-home', [App\Http\Controllers\HomeController::class, 'getAddHome'])->name('add.home');
+Route::post('add-home', [App\Http\Controllers\HomeController::class, 'postAddHome'])->name('postAddProduct');
+Route::get('view-image/{id}', [HomeController::class, 'images'])->name('images.home');
 
 Route::prefix('google')->name('google.')->group(function () {
     Route::get('login', [LoginController::class, 'loginWithGoogle'])->name('login');

@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('homes', function (Blueprint $table) {
-            $table->increments('home_id');
+            $table->id();
 
             $table->unsignedInteger('type_id');
-            $table->foreign('type_id')->references('type_id')->on('types')->nullable();
+            $table->foreign('type_id')->references('id')->on('types')->nullable();
             $table->unsignedInteger('service_id');
             $table->foreign('service_id')->references('service_id')->on('services')->nullable();
             $table->unsignedInteger('discount_id');

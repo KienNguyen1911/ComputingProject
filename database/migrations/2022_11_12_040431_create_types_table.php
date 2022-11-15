@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('types', function (Blueprint $table) {
-            $table->increments('type_id');
+            $table->increments('id');
             $table->string('type_name')->nullable();
             $table->text('type_description')->nullable();
             $table->timestamps();

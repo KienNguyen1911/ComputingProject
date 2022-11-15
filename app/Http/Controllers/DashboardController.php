@@ -26,8 +26,6 @@ class DashboardController extends Controller
         return view('admin.tables');
     }
 
-    public function getUser()
-    {
-        return view('admin.user');
-    }
+
+
 }

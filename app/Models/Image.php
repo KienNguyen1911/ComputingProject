@@ -9,8 +9,5 @@ class Image extends Model
 {
     use HasFactory;
 
-    // public function homeimage()
-    // {
-    //     return $this->hasMany(HomeImage::class);
-    // }
+    protected $guarded = [];
 }

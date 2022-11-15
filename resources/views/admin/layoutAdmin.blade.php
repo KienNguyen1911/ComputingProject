@@ -70,10 +70,16 @@
                             <p>Table List</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.dashboard') }}">
+                    <li class="{{ request()->is('admin/type-manage') ? 'active' : '' }}">
+                        <a href="{{ route('view.type') }}">
                             <i class="now-ui-icons location_map-big"></i>
-                            <p>Maps</p>
+                            <p>Manage Type</p>
+                        </a>
+                    </li>
+                    <li class="{{ request()->is('admin/product-manage') ? 'active' : '' }}">
+                        <a href="{{ route('view.home') }}">
+                            <i class="now-ui-icons location_map-big"></i>
+                            <p>Manage Home</p>
                         </a>
                     </li>
                     <li>
@@ -168,6 +174,15 @@
                 @yield('user')
                 @yield('tables')
                 @yield('charts')
+
+                {{-- type --}}
+                @yield('view-type')
+                @yield('add-type')
+                @yield('edit-type')
+
+                {{-- product --}}
+                @yield('view-product')
+                @yield('add-product')
             </div>
         </div>
     </div>

@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('images', function (Blueprint $table) {
-            $table->increments('image_id');
-            $table->string('image')->nullable();
-            $table->text('image_description')->nullable();
+        Schema::create('nothing', function (Blueprint $table) {
+            $table->increments('id');
+            // $table->unsignedBigInteger('home_id');
+            // $table->foreign('home_id')->references('id')->on('homes');
+            // $table->text('image');
             $table->timestamps();
         });
     }

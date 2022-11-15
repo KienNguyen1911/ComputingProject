@@ -15,6 +15,8 @@ class Home extends Model
      * @var array<int, string>
      */
 
+    protected $guarded = [];
+
     public function services()
     {
         return $this->hasMany(Service::class);
@@ -30,6 +32,10 @@ class Home extends Model
         return $this->belongsTo(Discount::class);
     }
     
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
     // public function homeimage()
     // {
     //     return $this->hasMany(HomeImage::class);
