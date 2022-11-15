@@ -24,7 +24,9 @@ class User extends Authenticatable
         'email',
         'password',
         'google_id',
+        'facebook_id',
         'avatar_original',
+        'role'
     ];
 
     /**
@@ -36,7 +38,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'provider_id',
-        'provider_name',	
+        'provider_name',
     ];
 
     /**

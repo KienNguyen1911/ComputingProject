@@ -40,7 +40,7 @@
                         <i class="fa-brands fa-google"></i>
                         <span>Google</span>
                     </a>
-                    <a type="button" class="btn" style="background-color:#046fe5; color:aliceblue">
+                    <a href="{{route('facebook.login')}}"type="button" class="btn" style="background-color:#046fe5; color:aliceblue">
                         <i class="fa-brands fa-facebook"></i>
                         <span>Facebook</span>
                     </a>

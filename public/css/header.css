@@ -96,6 +96,10 @@
     color: #085ddb;
     cursor: pointer;
 }
+.navbar-profile-card {
+    visibility: hidden;
+    position: absolute;
+}
 .navbar-icon__center {
     font-size: 40px;
 }
@@ -137,6 +141,10 @@
     font-size: 14px;
     font-weight: 700;
     line-height: 16px;
+}
+.background-text__button:hover {
+    background-color: #085ddb;
+    cursor: pointer;
 }
 .search {
     position: absolute;
@@ -186,4 +194,8 @@
     font-weight: 700;
     line-height: 16px;
     padding: 20px;
+}
+
+.nav-items__icon__position {
+    margin-right: 10px;
 }
