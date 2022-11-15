@@ -26,9 +26,7 @@ return new class extends Migration
             $table->string('home_name')->nullable();
             $table->text('home_description')->nullable();
             $table->string('home_address')->nullable();
-            // $table->string('home_type')->nullable();
             $table->float('home_price')->nullable();
-            // $table->string('home_image')->nullable();
             $table->string('home_status')->nullable();
             $table->string('home_capacity')->nullable();
             $table->string('home_rating')->nullable();

@@ -42,12 +42,9 @@ class LoginController extends Controller
                     'avatar_original' => $user->getAvatar(),
                     'password' => Hash::make('password'),
                     'email_verified_at' => now(),
+                    'user_role' => 'user',
                 ]);
                 $saveUser->save();
-                // Auth::login($saveUser);
-                // if (Auth::user()->user_role == 'admin') {
-                //     return redirect()->route('admin.dashboard');
-                // }
             } else {
                 $saveUser = User::where('email',  $user->getEmail())->update([
                     'google_id' => $user->getId(),
@@ -95,11 +92,51 @@ class LoginController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->user_role = 'user';
+        $user->email_verified_at = now();
         $user->save();
         $success = 'Registered Successfully!';
         return redirect()->route('signin')->with('success', $success);
     }
+    public function loginWithFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
 
+    public function callBackFromFacebook()
+    {
+        try {
+            $user = Socialite::driver('facebook')->user();
+            $is_user = User::where('email', $user->getEmail())->first();
+            if (!$is_user) {
+                $saveUser = User::updateOrCreate([
+                    'facebook_id' => $user->getId(),
+                ], [
+                    'facebook_id' => $user->getId(),
+                    'name' => $user->getName(),
+                    'email' => $user->getEmail(),
+                    'avatar_original' => $user->getAvatar(),
+                    'password' => Hash::make('password'),
+                    'email_verified_at' => now(),
+                    'user_role' => 'user',
+                ]);
+                $saveUser->save();
+            } else {
+                $saveUser = User::where('email',  $user->getEmail())->update([
+                    'facebook_id' => $user->getId(),
+                    'avatar_original' => $user->getAvatar(),
+                ]);
+                $saveUser = User::where('email', $user->getEmail())->first();
+            }
+            Auth::loginUsingId($saveUser->id);
+            if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->route('welcome');
+            }
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
     public function logout()
     {
         Auth::logout();

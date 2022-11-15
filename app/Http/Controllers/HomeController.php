@@ -31,16 +31,17 @@ class HomeController extends Controller
             'home_capacity' => 'required',	
         ]);
         $new_home = Home::create($data);
-        if($request->has('images')){
-            foreach($request->file('images')as $image){
-                $imageName = $data['home_name'].'-image-'.time().rand(1,1000).'.'.$image->extension();
-                $image->move(public_path('homes'),$imageName);
-                Image::create([
-                    'home_id'=>$new_home->id,
-                    'image'=>$imageName
-                ]);
-            }
-        }
+        dd($new_home);
+        // if($request->has('images')){
+        //     foreach($request->file('images')as $image){
+        //         $imageName = $data['home_name'].'-image-'.time().rand(1,1000).'.'.$image->extension();
+        //         $image->move(public_path('homes'),$imageName);
+        //         Image::create([
+        //             'home_id'=>$new_home->id,
+        //             'image'=>$imageName
+        //         ]);
+        //     }
+        // }
         // return redirect()->route('view.home');
     }
 
