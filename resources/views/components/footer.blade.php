@@ -21,7 +21,6 @@
 <body>
   
     <div class="footer">
-        <div class="footer-container">
             <div class="row footer-body">
                 <div class="col-lg-3">
                     <div class="footer-logo">
@@ -53,7 +52,6 @@
             <div class="line"></div>
             <div class="footer-coppyright">Copyright © 2021 UI8 LLC. All rights reserved</div>
         </div>
-    </div>
 </body>
 
 </html>
