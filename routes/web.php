@@ -40,9 +40,6 @@ Route::get ('/signin', function(){
 Route::get ('/browse', function(){
     return view ('components.browse');
 });
-Route::get ('/bill', function(){
-    return view ('components.bill');
-});
 Route::get ('/newbill', function(){
     return view ('components.newbill');
 });
