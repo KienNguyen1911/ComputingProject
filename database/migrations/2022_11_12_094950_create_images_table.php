@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Home;
 
 return new class extends Migration
 {
@@ -13,11 +14,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nothing', function (Blueprint $table) {
+        Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            // $table->unsignedBigInteger('home_id');
-            // $table->foreign('home_id')->references('id')->on('homes');
-            // $table->text('image');
+            $table->foreignIdFor(Home::class);
+            $table->text('image');
             $table->timestamps();
         });
     }

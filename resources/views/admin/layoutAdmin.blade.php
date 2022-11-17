@@ -181,8 +181,12 @@
                 @yield('edit-type')
 
                 {{-- product --}}
-                @yield('view-product')
-                @yield('add-product')
+                @yield('view-home')
+                @yield('add-home')
+                @yield('images')
+                @yield('edit-home')
+
+                {{-- product --}}
             </div>
         </div>
     </div>

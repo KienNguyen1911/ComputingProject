@@ -65,10 +65,15 @@ Route::get('/type-edit/{id}',[TypeController::class, 'getEditType'])->name('edit
 Route::post('/type-edit/{id}',[TypeController::class, 'postEditType'])->name('postEditType');
 Route::get('/type-delete/{id}',[TypeController::class, 'getDeleteType'])->name('delete.type');
 
-Route::get('home', [App\Http\Controllers\HomeController::class, 'getHome'])->name('view.home');
-Route::get('add-home', [App\Http\Controllers\HomeController::class, 'getAddHome'])->name('add.home');
-Route::post('add-home', [App\Http\Controllers\HomeController::class, 'postAddHome'])->name('postAddProduct');
-Route::get('view-image/{id}', [HomeController::class, 'images'])->name('images.home');
+Route::get('/home', [HomeController::class, 'getHome'])->name('view.home');
+Route::get('/add-home', [HomeController::class, 'getAddHome'])->name('add.home');
+Route::post('/add-home', [HomeController::class, 'postAddHome'])->name('postAddHome');
+Route::get('/edit-home/{id}', [HomeController::class, 'getEditHome'])->name('edit.home');
+Route::post('/edit-home/{id}', [HomeController::class, 'postEditHome'])->name('postEditHome');
+Route::get('/delete-home/{id}', [HomeController::class, 'getDeleteHome'])->name('delete.home');
+
+Route::get('/view-image/{id}', [HomeController::class, 'images'])->name('images.home');
+Route::get('/delete-image/{id}', [HomeController::class, 'deleteImage'])->name('deleteImage.home');
 
 Route::prefix('google')->name('google.')->group(function () {
     Route::get('login', [LoginController::class, 'loginWithGoogle'])->name('login');

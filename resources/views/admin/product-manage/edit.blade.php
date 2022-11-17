@@ -1,6 +1,6 @@
 @extends('admin.layoutAdmin')
 
-@section('add-home')
+@section('edit-home')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -19,21 +19,21 @@
                     <h5 class="title">Add new Home</h5>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('postAddHome') }}" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 ">
                                 <div class="form-group">
                                     <label>Home Name</label>
                                     <input type="text" class="form-control" placeholder="Name" name="home_name"
-                                        value="">
+                                        value="{{ $home->home_name }}">
                                 </div>
                             </div>
                             <div class="col-md-6 ">
                                 <div class="form-group">
                                     <label>Home Status</label>
                                     <input type="text" class="form-control" placeholder="Name" name="home_status"
-                                        value="">
+                                        value="{{ $home->home_status }}">
                                 </div>
                             </div>
                         </div>
@@ -43,21 +43,21 @@
                                 <div class="form-group">
                                     <label>Home Price</label>
                                     <input type="number" class="form-control" placeholder="Name" name="home_price"
-                                        value="">
+                                        value="{{ $home->home_price }}">
                                 </div>
                             </div>
                             <div class="col-md-4 ">
                                 <div class="form-group">
                                     <label>Home Capacity</label>
                                     <input type="number" class="form-control" placeholder="Name" name="home_capacity"
-                                        value="">
+                                        value="{{ $home->home_capacity }}">
                                 </div>
                             </div>
                             <div class="col-md-4 ">
                                 <div class="form-group">
                                     <label>Home Rating</label>
                                     <input type="number" class="form-control" placeholder="Name" name="home_rating"
-                                        value="">
+                                        value="{{ $home->home_rating }}">
                                 </div>
                             </div>
                         </div>
@@ -67,13 +67,14 @@
                                 <div class="form-group">
                                     <label>Home Address</label>
                                     <input type="text" class="form-control" placeholder="Name" name="home_address"
-                                        value="">
+                                        value="{{ $home->home_address }}">
                                 </div>
                             </div>
                             <div class="col-md-6 ">
                                 <div class="form-group">
                                     <label>Home Image</label>
-                                    <input type="file" class="form-control" accept="image/*" placeholder="Name" name="images[]" multiple>
+                                    <input type="file" class="form-control" accept="image/*" placeholder="Name"
+                                        name="images[]" multiple>
                                 </div>
                             </div>
                         </div>
@@ -83,6 +84,7 @@
                                 <div class="form-group">
                                     <label>Home Description</label>
                                     <textarea type="text" class="form-control" placeholder="Name" name="home_description" value="">
+                                        {{ $home->home_description }}
                                     </textarea>
                                 </div>
                             </div>

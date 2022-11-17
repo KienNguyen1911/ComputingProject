@@ -1,5 +1,5 @@
 @extends('admin.layoutAdmin')
-@section('view-product')
+@section('view-home')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -10,25 +10,28 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
-                            <thead class=" text-primary">
-                                <th> Name</th>
-                                <th>Type</th>
-                                <th> Price</th>
-                                <th>Address</th>
-                                <th>Image</th>
-                                <th> Description</th>
+                            <thead class=" text-primary ">
+                                <th > Name</th>
+                                <th >Type</th>
+                                <th > Price</th>
+                                <th >Address</th>
+                                <th >Image</th>
+                                {{-- <th> Description</th> --}}
                                 <th class="text-center"> Function</th>
                             </thead>
                             <tbody>
                                 @foreach ($home as $home)
-                                    <tr>
-                                        <td> {{ $home->home_name }}</td>
-                                        <td> nothing</td>
-                                        <td> {{ $home->home_price }}</td>
-                                        <td> {{ $home->home_address }}</td>
-                                        <td> {{ $home->home_images->count() }}</td>
-                                        <td class="text-center " style="display: flex; gap: 10px">
-                                            <a href="{{ route('images.home', ['id' => $home->id]) }}"class="btn btn-warning">View</a>
+                                    <tr >
+                                        <td > {{ $home->home_name }}</td>
+                                        <td > nothing</td>
+                                        <td > {{ $home->home_price }}</td>
+                                        <td > {{ $home->home_address }}</td>
+                                        <td > {{ $home->images->count() }}</td>
+                                        {{-- <td>{{$home->home_description}}</td> --}}
+                                        <td class="text-center">
+                                            <a href="{{ route('images.home', ['id' => $home->id]) }}"class="btn btn-info">View</a>
+                                            <a href="{{ route('edit.home', ['id' => $home->id]) }}"  class="btn btn-warning">Edit</a>
+                                            <a href="{{ route('delete.home', ['id' => $home->id]) }}"class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
