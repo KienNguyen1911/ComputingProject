@@ -82,6 +82,12 @@
                             <p>Manage Home</p>
                         </a>
                     </li>
+                    <li class="{{ request()->is('admin/product-manage') ? 'active' : '' }}">
+                        <a href="{{ route('view.service') }}">
+                            <i class="now-ui-icons location_map-big"></i>
+                            <p>Manage Service</p>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{ route('logout') }}">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -186,7 +192,12 @@
                 @yield('images')
                 @yield('edit-home')
 
-                {{-- product --}}
+                {{-- service --}}
+                @yield('view-service')
+                @yield('add-service')
+                @yield('edit-service')
+
+                {{-- user --}}
             </div>
         </div>
     </div>

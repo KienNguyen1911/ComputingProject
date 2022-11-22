@@ -62,7 +62,7 @@
     }
 
     .delete {
-        /* display: none !important; */
+        display: none !important;
         position: absolute !important;
         top: 50%;
         right: 50%;

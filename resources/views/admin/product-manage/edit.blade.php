@@ -39,25 +39,36 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4 ">
+                            <div class="col-md-3 ">
                                 <div class="form-group">
                                     <label>Home Price</label>
                                     <input type="number" class="form-control" placeholder="Name" name="home_price"
                                         value="{{ $home->home_price }}">
                                 </div>
                             </div>
-                            <div class="col-md-4 ">
+                            <div class="col-md-3 ">
                                 <div class="form-group">
                                     <label>Home Capacity</label>
                                     <input type="number" class="form-control" placeholder="Name" name="home_capacity"
                                         value="{{ $home->home_capacity }}">
                                 </div>
                             </div>
-                            <div class="col-md-4 ">
+                            <div class="col-md-3 ">
                                 <div class="form-group">
                                     <label>Home Rating</label>
                                     <input type="number" class="form-control" placeholder="Name" name="home_rating"
                                         value="{{ $home->home_rating }}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Example select</label>
+                                    <select class="form-control" id="exampleFormControlSelect1" name="type_id" >
+                                        @foreach ($type as $type)
+                                            <option value="{{$type->id}}">{{$type->type_name}}</option>
+                                        @endforeach
+
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -86,6 +97,26 @@
                                     <textarea type="text" class="form-control" placeholder="Name" name="home_description" value="">
                                         {{ $home->home_description }}
                                     </textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="row">
+                            <div class="col-md-12 ">
+                                <label for="">Home Service</label>
+                                <div class="form-check">
+                                    <div class="row">
+                                        @foreach ($service as $service)
+                                            <label class="form-check-label col-md-3 mb-3">
+                                                <input class="form-check-input" type="checkbox" name="service[]" value="{{ $service->service_name }}" {{in_array($service->service_name, $servicehome) ? 'checked' : ''}}>
+                                                {{ $service->service_name }}
+                                                <span class="form-check-sign">
+                                                    <span class="check"></span>
+                                                </span>
+                                            </label>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>

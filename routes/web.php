@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +20,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [HomeController::class, 'landingPage'])->name('landingPage');
 
 Route::get('search', function () {
     return view('components.search');
@@ -74,6 +72,14 @@ Route::get('/delete-home/{id}', [HomeController::class, 'getDeleteHome'])->name(
 
 Route::get('/view-image/{id}', [HomeController::class, 'images'])->name('images.home');
 Route::get('/delete-image/{id}', [HomeController::class, 'deleteImage'])->name('deleteImage.home');
+
+Route::get('/service', [ServiceController::class, 'getService'])->name('view.service');
+Route::get('/add-service', [ServiceController::class, 'getAddService'])->name('add.service');
+Route::post('/add-service', [ServiceController::class, 'postAddService'])->name('postAddService');
+Route::get('/edit-service/{id}', [ServiceController::class, 'getEditService'])->name('edit.service');
+Route::post('/edit-service/{id}', [ServiceController::class, 'postEditService'])->name('postEditService');
+Route::get('/delete-service/{id}', [ServiceController::class, 'getDeleteService'])->name('delete.service');
+
 
 Route::prefix('google')->name('google.')->group(function () {
     Route::get('login', [LoginController::class, 'loginWithGoogle'])->name('login');

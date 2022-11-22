@@ -5,19 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Home;
 use App\Models\Image;
+use App\Models\Type;
+use Illuminate\Support\Facades\DB;
+use PHPUnit\Framework\Constraint\Count;
+use App\Models\Service;
 
 class HomeController extends Controller
 {
     //
+    // ==================== ADMIN =================================
     public function getHome()
     {
-        $home = Home::all();
-        return view('admin.product-manage.view', ['home' => $home]);
+        $data = Home::all();
+        // $service = Service::all();
+        return view('admin.product-manage.view', ['data' => $data] );
     }
 
     public function getAddHome()
     {
-        return view('admin.product-manage.add');
+        $type = Type::all();
+        $service = Service::all();
+        return view('admin.product-manage.add', ['type' => $type], ['service' => $service]);
     }
 
 
@@ -25,7 +33,21 @@ class HomeController extends Controller
     {
         try {
             //code...
+
+            $request->validate([
+                'type_id' => 'required',
+                // 'service_id' => 'required',
+                'home_name' => 'required',
+                'home_description' => 'required',
+                'home_price' => 'required',
+                'home_address' => 'required',
+                'home_status' => 'required',
+                'home_capacity' => 'required',
+                'home_rating' => 'required',
+            ]);
             $new_home = new Home();
+            $new_home->type_id = $request->type_id;
+            $new_home->service = json_encode($request->service);
             $new_home->home_name = $request->home_name;
             $new_home->home_description = $request->home_description;
             $new_home->home_price = $request->home_price;
@@ -39,22 +61,17 @@ class HomeController extends Controller
                 foreach($request->file('images')as $image){
                     $imageName = $new_home['home_name'].'-image-'.time().rand(1,1000).'.'.$image->extension();
                     $image->move(public_path('homes_image'),$imageName);
-                    // Image::create([
-                    //     'home_id'=>$new_home->id,
-                    //     'image'=>$imageName
-                    // ]);
                     $new_image = new Image();
                     $new_image->home_id = $new_home->id;
                     $new_image->image = $imageName;
                     $new_image->save();
                 }
-                // dd($new_image);
             }
             
             return redirect()->route('view.home');
         } catch (\Throwable $th) {
             // throw $th;
-            return redirect()->back()->with('error', $th->getMessage());
+            return redirect()->back()->with('errors', $th->getMessage());
         }
     }
 
@@ -80,7 +97,10 @@ class HomeController extends Controller
     {
         $home = Home::find($id);
         if (!$home) abort(404);
-        return view('admin.product-manage.edit', ['home' => $home]);
+        $type = Type::all();
+        $service = Service::all();
+        $servicehome = json_decode($home->service);
+        return view('admin.product-manage.edit', ['home' => $home, 'type' => $type, 'service' => $service, 'servicehome' => $servicehome]);
     }
 
     public function postEditHome(Request $request, $id)
@@ -89,6 +109,8 @@ class HomeController extends Controller
             //code...
             $home = Home::find($id);
             if (!$home) abort(404);
+            $home->type_id = $request->type_id;
+            $home->service = json_encode($request->service);
             $home->home_name = $request->home_name;
             $home->home_description = $request->home_description;
             $home->home_price = $request->home_price;
@@ -128,5 +150,15 @@ class HomeController extends Controller
         }
         $home->delete();
         return redirect()->route('view.home');
+    }
+
+    // ==================== USER =================================
+    public function landingPage()
+    {
+        # code...
+        $data = Home::all();
+        $type = Type::all();
+        $service = Service::all();
+        return view('welcome', ['data' => $data, 'type' => $type, 'service' => $service]);
     }
 }
