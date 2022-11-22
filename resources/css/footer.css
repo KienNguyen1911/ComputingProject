@@ -1,5 +1,5 @@
 * {
-    margin: 0px;
+    margin-top: 200px;
     padding: 0px;
     max-width: 100%;
     font-family: 'Poppins', sans-serif;
@@ -16,7 +16,7 @@ body {
 }
 
 .footer-body {
-    padding: 62px 0 48px;
+    margin-bottom: 200px;
 }
 a {
     text-decoration: none;

@@ -42,15 +42,17 @@ a {
 }
 
 .footer-email {
+    position: relative;
     height: 45px;
     border-radius: 60px;
     font-size: 14px;
+    
 }
 
 .footer-arrow {
-    position: absolute;
-    top: -15px;
-    right: 22px;
+    position: relative;
+    top: -109px;
+    right: -222px;
     width: 32px;
 }
 
