@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 
 
 /*
@@ -37,10 +38,10 @@ Route::get('personal-info', function () {
 Route::get('profile', function () {
     return view('components.profile');
 });
-
-Route::get('confirm-pay', function () {
-    return view('components.confirm-pay');
+Route::get('home-details', function () {
+    return view('home-details');
 });
+
 Route::get('/signup', [LoginController::class, 'getSignup'])->name('signup');
 Route::post('/signup', [LoginController::class, 'postSignup'])->name('postSignup');
 Route::get('/signin', [LoginController::class, 'getSignin'])->name('signin');
@@ -48,22 +49,22 @@ Route::post('/signin', [LoginController::class, 'postLogin'])->name('postSignin'
 
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::prefix('admin')->group( function () {
-    Route::get('/dashboard',[DashboardController::class, 'getDashboard'])->name('admin.dashboard');
-    Route::get('/demo',[DashboardController::class, 'getDemo'])->name('admin.demo');
-    Route::get('/notifications',[DashboardController::class, 'getNotifications'])->name('admin.notifications');
-    Route::get('/tables',[DashboardController::class, 'getTables'])->name('admin.tables');
-    Route::get('/user',[ProfileController::class, 'getProfile'])->name('admin.user');
-    Route::post('/user',[ProfileController::class, 'postProfile'])->name('postProfile');
+Route::prefix('admin')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('admin.dashboard');
+    Route::get('/demo', [DashboardController::class, 'getDemo'])->name('admin.demo');
+    Route::get('/notifications', [DashboardController::class, 'getNotifications'])->name('admin.notifications');
+    Route::get('/tables', [DashboardController::class, 'getTables'])->name('admin.tables');
+    Route::get('/user', [ProfileController::class, 'getProfile'])->name('admin.user');
+    Route::post('/user', [ProfileController::class, 'postProfile'])->name('postProfile');
     // Type
-    
+
 });
-Route::get('/type',[TypeController::class, 'getType'])->name('view.type');
-Route::get('/type-add',[TypeController::class, 'getAddType'])->name('add.type');
-Route::post('/type-add',[TypeController::class, 'postAddType'])->name('postAddType');
-Route::get('/type-edit/{id}',[TypeController::class, 'getEditType'])->name('edit.type');
-Route::post('/type-edit/{id}',[TypeController::class, 'postEditType'])->name('postEditType');
-Route::get('/type-delete/{id}',[TypeController::class, 'getDeleteType'])->name('delete.type');
+Route::get('/type', [TypeController::class, 'getType'])->name('view.type');
+Route::get('/type-add', [TypeController::class, 'getAddType'])->name('add.type');
+Route::post('/type-add', [TypeController::class, 'postAddType'])->name('postAddType');
+Route::get('/type-edit/{id}', [TypeController::class, 'getEditType'])->name('edit.type');
+Route::post('/type-edit/{id}', [TypeController::class, 'postEditType'])->name('postEditType');
+Route::get('/type-delete/{id}', [TypeController::class, 'getDeleteType'])->name('delete.type');
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'getHome'])->name('view.home');
 Route::get('add-home', [App\Http\Controllers\HomeController::class, 'getAddHome'])->name('add.home');
@@ -79,3 +80,5 @@ Route::prefix('facebook')->name('facebook.')->group(function () {
     Route::get('login', [LoginController::class, 'loginWithFacebook'])->name('login');
     Route::any('callback', [LoginController::class, 'callBackFromFacebook'])->name('callback');
 });
+
+Route::get('components/confirm-pay', [PaymentController::class, 'getPayment'])->name('payment');

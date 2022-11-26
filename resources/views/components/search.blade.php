@@ -1,91 +1,140 @@
 @include('components.head')
 <link href="{{ asset('css/base.css') }}" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
-<div class="container">
-    {{-- Background --}}
-    <div class="background">
-        <div class="background-image">
-            <img src="{{ asset('img/main-pic-1.jpg') }}" style="border-radius: 25px; max-width: 100%" alt="Main">
-            <div class="background-text">
-                <div class="background-text__title">
-                    Air, sleep, dream
-                </div>
-                <div class="background-text__subtitle">
-                    Find and book a great experience.
-                </div>
-                <div class="background-text__button">
-                    Start your search
-                </div>
-            </div>
-            {{-- Search --}}
-            <div class="search">
-                <div class="search-navbar">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Stays</a>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Flights</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Cars</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Things to do</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="search-content">
-                    <div class="search-bar">
-                        <div class="search-bar__icon">
-                            <i class="fa-solid fa-location-dot"></i>
-                        </div>
-                        <div class="search-bar__text">
-                            Location
-                            <div class="search-bar__subtext">
-                                Where are you going?
-                            </div>
-                        </div>
-                    </div>
-                    <div class="search-bar">
-                        <div class="search-bar__icon">
-                            <i class="fa-solid fa-calendar-days"></i>
-                        </div>
-                        <div class="search-bar__text">
-                            Check in - out
-                            <div class="search-bar__subtext">
-                                Add date
-                            </div>
-                        </div>
-                    </div>
-                    <div class="search-bar">
-                        <div class="search-bar__icon">
-                            <i class="fa-solid fa-user-pen"></i>
-                        </div>
-                        <div class="search-bar__text">
-                            Travelers
-                            <div class="search-bar__subtext">
-                                Travelers
+<link rel="stylesheet" href="{{ asset('css/calender/mobiscroll.javascript.min.css') }}">
+<script src="{{ asset('js/calender/mobiscroll.javascript.min.js') }}"></script>
+<script>
+    var min = '2022-11-21T00:00';
+    var max = '2023-05-21T00:00';
 
+    mobiscroll.datepicker('#demo-booking-single', {
+        controls: ['calendar'],
+        min: min,
+        max: max,
+        onPageLoading: function(event, inst) {
+            getPrices(event.firstDay, function callback(bookings) {
+                inst.setOptions({
+                    labels: bookings.labels,
+                    invalid: bookings.invalid
+                });
+            });
+        }
+    });
+
+    function getPrices(d, callback) {
+        var invalid = [],
+            labels = [];
+
+        mobiscroll.util.http.getJson('//trial.mobiscroll.com/getprices/?year=' + d.getFullYear() + '&month=' + d
+            .getMonth(),
+            function(bookings) {
+                for (var i = 0; i < bookings.length; ++i) {
+                    var booking = bookings[i],
+                        d = new Date(booking.d);
+
+                    if (booking.price > 0) {
+                        labels.push({
+                            start: d,
+                            title: '$' + booking.price,
+                            textColor: '#e1528f'
+                        });
+                    } else {
+                        invalid.push(d);
+                    }
+                }
+                callback({
+                    labels: labels,
+                    invalid: invalid
+                });
+            }, 'jsonp');
+    }
+</script>
+<body>
+    <div class="container">
+        {{-- Background --}}
+        <div class="background">
+            <div class="background-image">
+                <img src="{{ asset('img/main-pic-1.jpg') }}" style="border-radius: 25px; max-width: 100%" alt="Main">
+                <div class="background-text">
+                    <div class="background-text__title">
+                        Air, sleep, dream
+                    </div>
+                    <div class="background-text__subtitle">
+                        Find and book a great experience.
+                    </div>
+                    <div class="background-text__button">
+                        Start your search
+                    </div>
+                </div>
+                {{-- Search --}}
+                <div class="search">
+                    <div class="search-navbar">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Stays</a>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Flights</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Cars</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Things to do</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="search-content">
+                        <div class="search-bar">
+                            <div class="search-bar__icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="search-bar__text">
+                                Location
+                                <div class="search-bar__subtext">
+                                    Where are you going?
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="search-bar">
-                        <div class="search-bar__icon">
-                            <div class="search-bar__icon__background">
-                                <i class="fa-solid fa-magnifying-glass"></i>
+                        <div class="search-bar">
+                            <div class="search-bar__icon" id="demo-booking-single">
+                                <i class="fa-solid fa-calendar-days"></i>
+                            </div>
+                            <div type="button" class="search-bar__text">
+                                Check in - out
+                                <div class="search-bar__subtext">
+                                    Add date
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-bar">
+                            <div class="search-bar__icon">
+                                <i class="fa-solid fa-user-pen"></i>
+                            </div>
+                            <div class="search-bar__text">
+                                Travelers
+                                <div class="search-bar__subtext">
+                                    Travelers
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-bar">
+                            <div class="search-bar__icon">
+                                <div class="search-bar__icon__background">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-</script>
+    </div> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script>
 </body>
