@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\Service;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Type;
 
 return new class extends Migration
 {
@@ -15,21 +17,17 @@ return new class extends Migration
     {
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedInteger('type_id');
-            $table->foreign('type_id')->references('id')->on('types')->nullable();
-            $table->unsignedInteger('service_id');
-            $table->foreign('service_id')->references('service_id')->on('services')->nullable();
-            $table->unsignedInteger('discount_id');
-            $table->foreign('discount_id')->references('discount_id')->on('discounts')->nullable();
             
-            $table->string('home_name')->nullable();
-            $table->text('home_description')->nullable();
-            $table->string('home_address')->nullable();
-            $table->float('home_price')->nullable();
-            $table->string('home_status')->nullable();
-            $table->string('home_capacity')->nullable();
-            $table->string('home_rating')->nullable();
+            $table->foreignIdFor(Type::class);
+            // $table->foreignIdFor(Service::class)->json_encode()->nullable();
+            $table->string('service')->nullable();
+            $table->string('home_name');
+            $table->text('home_description');
+            $table->string('home_address');
+            $table->decimal('home_price',8,2);
+            $table->string('home_status');
+            $table->integer('home_capacity');
+            $table->decimal('home_rating');
 
             $table->timestamps();
         });
