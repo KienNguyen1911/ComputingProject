@@ -1,50 +1,11 @@
 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 @include('components.head')
-{{-- @include('components.header') --}}
+@include('components.header')
 
 
 <link rel="stylesheet" href="{{ asset('css/home-details.css') }}">
 
 <body>
-    {{-- header in header --}}
-    <div class="header">
-        <div class="navbar">
-            <div class="navbar-left">
-                <div class="navbar-logo">
-                    <a href="index.html">
-                        <img class="some-icon" src="https://ui8-fleet-html.herokuapp.com/img/logo-dark.svg" alt="Fleet" data-metatip="true" data-allytip="true" data-selected="true" data-label-id="0">
-                    </a>
-                </div>
-                <div class="navbar-feature">
-                    <div class="navbar-feature__text">
-                        Traverlers
-                    </div>
-                    <div class="navbar-feature__icon">
-                        <i class="fa-sharp fa-solid fa-caret-down"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="navbar-right">
-                <a class="navbar-support" href="#">
-                    Support
-                </a>
-                <a class="navbar-button" href="">
-                    List your property
-                </a>
-                <div class="navbar-notification">
-                    <div class="navbar-icon__center">
-                        <i class="fa-regular fa-bell" style="font-size: 20px"></i>
-                    </div>
-                </div>
-                <div class="navbar-profile">
-                    <div class="navbar-icon__center">
-                        <i class="fa-solid fa-circle-user"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <div class="section product">
         <div class="product-center center">
@@ -70,14 +31,15 @@
                     </ol>
                 </nav>
             </div>
+
             <div class="product-head">
                 <div class="product-box">
-                    <h2 class="product-title h2">Spectacular views of Queenstown</h2>
+                    <h2 class="product-title h2">{{ $home->home_name }}</h2>
                     <div class="product-line">
-                        <div class="product-avatar"><img src="img/avatar-1.jpg" alt="Avatar"></div>
+                        <div class="product-avatar"><img src="/img/avatar-1.jpg" alt="Avatar"></div>
                         <div class="product-rating">
                             <i class="fa-solid fa-star"></i>
-                            <div class="product-number">4.8</div>
+                            <div class="product-number">{{ $home->home_rating }}</div>
                             <div class="product-reviews">(256 reviews)</div>
                         </div>
                         <div class="product-options">
@@ -87,7 +49,7 @@
                             </div>
                             <div class="product-option">
                                 <i class="fa-solid fa-flag"></i>
-                                Queenstown, Otago, New Zealand
+                                {{ $home->home_address }}
                             </div>
                         </div>
                     </div>
@@ -109,11 +71,17 @@
                     </div>
                 </div>
             </div>
+            @php
+                $firstImage = DB::table('images')->where('home_id', $home->id)->first();
+                $secondImage = DB::table('images')->where('home_id', $home->id)->skip(1)->first();
+                $thirdImage = DB::table('images')->where('home_id', $home->id)->skip(2)->first();
+                $fourthImage = DB::table('images')->where('home_id', $home->id)->skip(3)->first();
+            @endphp
             <div class="gallery">
                 <div class="gallery-list ">
                     <div class="gallery-preview">
                         <a href="" class="gallery-view">
-                            <img src="img/photo-1.1.jpg" alt="">
+                           <img src="/homes_image/{{ $firstImage->image }}" alt="">
                         </a>
                         <a href="" class="gallery-button button-small">
                             <i class="fa-regular fa-image"></i>
@@ -121,13 +89,16 @@
                         </a>
                     </div>
                     <a href="" class="gallery-preview">
-                        <img src="img/photo-1.2.jpg" alt="">
+                        <img src="/homes_image/{{ $secondImage->image }}" alt="">
+
                     </a>
                     <a href="" class="gallery-preview">
-                        <img src="img/photo-1.3.jpg" alt="">
+                        <img src="/homes_image/{{ $thirdImage->image }}" alt="">
+
                     </a>
                     <a href="" class="gallery-preview">
-                        <img src="img/photo-1.4.jpg" alt="">
+                        <img src="/homes_image/{{ $fourthImage->image }}" alt="">
+
                     </a>
                 </div>
             </div>
@@ -144,7 +115,7 @@
                     <div class="description-profile">
                         <span>Hosted by</span>
                         <div class="description-avatar">
-                            <img src="img/avatar.jpg" alt="">
+                            <img src="/img/avatar.jpg" alt="">
                         </div>
                         <div class="description-name">Zoe Towne</div>
                     </div>
@@ -163,44 +134,16 @@
                         </div>
                     </div>
                     <div class="description-content">
-                        <p>Described by Queenstown House & Garden magazine as having 'one of the best views we've ever seen' you will love relaxing in this newly built, architectural house sitting proudly on Queenstown Hill.</p>
-                        <p>Enjoy breathtaking 180' views of Lake Wakatipu from your well appointed & privately accessed bedroom with modern en suite and floor-to-ceiling windows.</p>
-                        <p>Your private patio takes in the afternoon sun, letting you soak up unparalleled lake and mountain views by day and the stars & city lights by night.</p>
+                        <p>{{ $home->home_description }}</p>
                     </div>
                     <div class="description-info">Amenities</div>
                     <div class="description-options">
-                        <div class="description-option">
-                            <i class="fa-solid fa-wifi"></i>
-                            Free wifi 24/7
-                        </div>
-                        <div class="description-option">
-                            <i class="fa-solid fa-wifi"></i>
-                            Free wifi 24/7
-                        </div>
-                        <div class="description-option">
-                            <i class="fa-solid fa-wifi"></i>
-                            Free wifi 24/7
-                        </div>
-                        <div class="description-option">
-                            <i class="fa-solid fa-wifi"></i>
-                            Free wifi 24/7
-                        </div>
-                        <div class="description-option">
-                            <i class="fa-solid fa-wifi"></i>
-                            Free wifi 24/7
-                        </div>
-                        <div class="description-option">
-                            <i class="fa-solid fa-wifi"></i>
-                            Free wifi 24/7
-                        </div>
-                        <div class="description-option">
-                            <i class="fa-solid fa-wifi"></i>
-                            Free wifi 24/7
-                        </div>
-                        <div class="description-option">
-                            <i class="fa-solid fa-wifi"></i>
-                            Free wifi 24/7
-                        </div>
+                        @foreach ($servicehome as $servicehome)
+                            <div class="description-option">
+                                <i class="fa-solid fa-wifi"></i>
+                                {{ $servicehome }}
+                            </div>
+                        @endforeach
                     </div>
                     <div class="description-full"></div>
                 </div>
@@ -208,18 +151,18 @@
                     <div class="receipt-head">
                         <div class="receipt-details">
                             <div class="receipt-cost">
-                                $109 <span>/night</span>
+                                ${{ $home->home_price }} <span>/night</span>
                             </div>
                             <div class="receipt-rating">
                                 <div class="product-rating">
                                     <i class="fa-solid fa-star"></i>
-                                    <div class="product-number">4.8</div>
+                                    <div class="product-number">{{ $home->home_rating }}</div>
                                     <div class="product-reviews">(256 reviews)</div>
                                 </div>
                             </div>
                         </div>
                         <div class="receipt-avatar">
-                            <img src="img/avatar.jpg" alt="">
+                            <img src="/img/avatar.jpg" alt="">
                         </div>
                     </div>
                     <div class="receipt-description row">
@@ -299,7 +242,7 @@
                     <div class="profile-head">
                         <div class="profile-line">
                             <div class="profile-avatar">
-                                <img src="img/avatar.jpg" alt="">
+                                <img src="/img/avatar.jpg" alt="">
                             </div>
                             <div class="profile-details">
                                 <div class="profile-man">Zoe towne</div>

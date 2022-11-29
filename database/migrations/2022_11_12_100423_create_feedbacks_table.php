@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Models\User;
+use App\Models\Reservation;
 return new class extends Migration
 {
     /**
@@ -14,12 +15,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('feedbacks', function (Blueprint $table) {
-            $table->increments('feedback_id');
+            $table->id();
 
-            $table->unsignedInteger('id');
-            $table->foreign('id')->references('id')->on('users')->nullable();
-            $table->unsignedInteger('reservation_id');
-            $table->foreign('reservation_id')->references('reservation_id')->on('reservation')->nullable();
+            // $table->unsignedInteger('id');
+            // $table->foreign('id')->references('id')->on('users')->nullable();
+            // $table->unsignedInteger('reservation_id');
+            // $table->foreign('reservation_id')->references('reservation_id')->on('reservation')->nullable();
+            $table->foreignIdFor(User::class)->nullable();
+            $table->foreignIdFor(Reservation::class)->nullable();
 
             $table->string('feedback_time')->nullable();
             $table->string('feedback_rating')->nullable();

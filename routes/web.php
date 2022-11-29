@@ -22,16 +22,28 @@ use App\Http\Controllers\ServiceController;
 
 Route::get('/', [HomeController::class, 'landingPage'])->name('landingPage');
 
+// Route::get('/allhome', function () {
+//     return view('components.allhome');
+// })->name('allhome');
+Route::get('/allhome', [HomeController::class, 'getAllHome'])->name('allhome');
+Route::get('/home-details/{id}', [HomeController::class, 'getHomeDetails'])->name('home-details');
+
+Route::get('/profile', function () {
+    return view('components.profile');
+});
+
 Route::get('search', function () {
     return view('components.search');
 });
 
-Route::get('/home-details', function () {
-    return view('home-details');
-})->name('home-details');
+// Route::get('/home-details', function () {
+//     return view('home-details');
+// })->name('home-details');
+
 Route::get('personal-info', function () {
     return view('components.personal-info');
 });
+
 Route::get('profile', function () {
     return view('components.profile');
 });

@@ -26,14 +26,14 @@
                                 <div class="form-group">
                                     <label>Home Name</label>
                                     <input type="text" class="form-control" placeholder="Name" name="home_name"
-                                        value="">
+                                        value="" required>
                                 </div>
                             </div>
                             <div class="col-md-6 ">
                                 <div class="form-group">
                                     <label>Home Status</label>
                                     <input type="text" class="form-control" placeholder="Name" name="home_status"
-                                        value="">
+                                        value="" required>
                                 </div>
                             </div>
                         </div>
@@ -43,21 +43,21 @@
                                 <div class="form-group">
                                     <label>Home Price</label>
                                     <input type="number" class="form-control" placeholder="Name" name="home_price"
-                                        value="">
+                                        value="" required>
                                 </div>
                             </div>
                             <div class="col-md-3 ">
                                 <div class="form-group">
                                     <label>Home Capacity</label>
                                     <input type="number" class="form-control" placeholder="Name" name="home_capacity"
-                                        value="">
+                                        value="" required>
                                 </div>
                             </div>
                             <div class="col-md-3 ">
                                 <div class="form-group">
                                     <label>Home Rating</label>
                                     <input type="number" class="form-control" placeholder="Name" name="home_rating"
-                                        value="">
+                                        value="" required>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -78,7 +78,7 @@
                                 <div class="form-group">
                                     <label>Home Address</label>
                                     <input type="text" class="form-control" placeholder="Name" name="home_address"
-                                        value="">
+                                        value="" required>
                                 </div>
                             </div>
                             <div class="col-md-6 ">
@@ -94,7 +94,7 @@
                             <div class="col-md-12 ">
                                 <div class="form-group">
                                     <label>Home Description</label>
-                                    <textarea type="text" class="form-control" placeholder="Name" name="home_description" value="">
+                                    <textarea type="text" class="form-control" placeholder="Name" name="home_description" value="" required>
                                     </textarea>
                                 </div>
                             </div>

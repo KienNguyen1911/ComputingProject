@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
         $data = Home::all();
         // $service = Service::all();
-        return view('admin.product-manage.view', ['data' => $data] );
+        return view('admin.product-manage.view', ['data' => $data]);
     }
 
     public function getAddHome()
@@ -57,17 +57,17 @@ class HomeController extends Controller
             $new_home->home_rating = $request->home_rating;
             $new_home->save();
             // dd($new_home);
-            if($request->has('images')){
-                foreach($request->file('images')as $image){
-                    $imageName = $new_home['home_name'].'-image-'.time().rand(1,1000).'.'.$image->extension();
-                    $image->move(public_path('homes_image'),$imageName);
+            if ($request->has('images')) {
+                foreach ($request->file('images') as $image) {
+                    $imageName = $new_home['home_name'] . '-image-' . time() . rand(1, 1000) . '.' . $image->extension();
+                    $image->move(public_path('homes_image'), $imageName);
                     $new_image = new Image();
                     $new_image->home_id = $new_home->id;
                     $new_image->image = $imageName;
                     $new_image->save();
                 }
             }
-            
+
             return redirect()->route('view.home');
         } catch (\Throwable $th) {
             // throw $th;
@@ -87,7 +87,7 @@ class HomeController extends Controller
     {
         $image = Image::find($id);
         if (!$image) abort(404);
-        unlink(public_path('homes_image/'.$image->image));
+        unlink(public_path('homes_image/' . $image->image));
         $image->delete();
         return redirect()->back();
     }
@@ -120,10 +120,10 @@ class HomeController extends Controller
             $home->home_rating = $request->home_rating;
             $home->save();
 
-            if($request->has('images')){
-                foreach($request->file('images')as $image){
-                    $imageName = $home['home_name'].'-image-'.time().rand(1,1000).'.'.$image->extension();
-                    $image->move(public_path('homes_image'),$imageName);
+            if ($request->has('images')) {
+                foreach ($request->file('images') as $image) {
+                    $imageName = $home['home_name'] . '-image-' . time() . rand(1, 1000) . '.' . $image->extension();
+                    $image->move(public_path('homes_image'), $imageName);
                     $new_image = new Image();
                     $new_image->home_id = $home->id;
                     $new_image->image = $imageName;
@@ -142,10 +142,10 @@ class HomeController extends Controller
     {
         // chưa có xóa ảnh theo home
         $home = Home::find($id);
-        if($home -> images){
-            foreach($home -> images as $image){
-                $image -> delete();
-                unlink(public_path('homes_image/'.$image->image));
+        if ($home->images) {
+            foreach ($home->images as $image) {
+                $image->delete();
+                unlink(public_path('homes_image/' . $image->image));
             }
         }
         $home->delete();
@@ -160,5 +160,33 @@ class HomeController extends Controller
         $type = Type::all();
         $service = Service::all();
         return view('welcome', ['data' => $data, 'type' => $type, 'service' => $service]);
+    }
+
+    public function allHome()
+    {
+        $data = Home::all();
+        $type = Type::all();
+        $service = Service::all();
+        return redirect()->route('allhome', ['data' => $data, 'type' => $type, 'service' => $service]);
+    }
+
+    public function getAllHome()
+    {
+        $home = Home::all();
+        $type = Type::all();
+        $service = Service::all();
+        $image = Image::all();
+        // $image = Image::where('home_id', $id)->first();
+        return view('components.allhome', ['home' => $home, 'type' => $type, 'service' => $service, 'image' => $image]);
+    }
+
+    public function getHomeDetails($id)
+    {
+        $home = Home::find($id);
+        $servicehome = json_decode($home->service);
+        $image = Image::where('home_id', $id)->get();
+
+        // dd($image);
+        return view('home-details', ['home' => $home, 'image' => $image, 'servicehome' => $servicehome]);
     }
 }

@@ -56,7 +56,7 @@ class LoginController extends Controller
             if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
                 return redirect()->route('admin.dashboard');
             } else {
-                return redirect()->route('welcome');
+                return redirect()->route('landingPage');
             }
         } catch (\Throwable $th) {
             throw $th;
@@ -71,7 +71,7 @@ class LoginController extends Controller
             if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
                 return route('admin.dashboard');
             } else {
-                return redirect()->route('welcome');
+                return redirect()->route('landingPage');
             }
         } else {
             $error = 'Email or Password is incorrect!';
@@ -131,7 +131,7 @@ class LoginController extends Controller
             if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
                 return redirect()->route('admin.dashboard');
             } else {
-                return redirect()->route('welcome');
+                return redirect()->route('landingPage');
             }
         } catch (\Throwable $th) {
             throw $th;
