@@ -24,10 +24,15 @@
                                 @php
                                     $servicehome = json_decode($data->service);
                                     $count = count($servicehome);
+
+                                    // $type = DB::tables('types')->where('id', $data->type_id)->get();
+                                    $type = DB::table('types')->where('id', $data->type_id)->first();
+                                    // $type_name = json_decode($type_name);
+                                    // dd($type);
                                 @endphp
                                     <tr >
                                         <td > {{ $data->home_name }}</td>
-                                        <td > {{ $data->type_id}}</td>
+                                        <td > {{ $type->type_name}}</td>
                                         <td > {{ $data->home_price }}</td>
                                         <td > {{ $data->home_address }}</td>
                                         <td > {{ $data->images->count() }}</td>

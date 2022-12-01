@@ -305,8 +305,13 @@ ol {
     font-weight: 500;
 }
 
+.gallery-preview > .gallery-view > img {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+}
 
-.gallery-preview img {
+.gallery-preview > img {
     width: 100%;
     height: 100%;
     border-radius: 16px;

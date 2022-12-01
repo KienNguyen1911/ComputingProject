@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ServiceController;
-
+use App\Http\Controllers\ReservationController;
+// use PaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,11 +24,18 @@ use App\Http\Controllers\ServiceController;
 
 Route::get('/', [HomeController::class, 'landingPage'])->name('landingPage');
 
-// Route::get('/allhome', function () {
-//     return view('components.allhome');
-// })->name('allhome');
+
 Route::get('/allhome', [HomeController::class, 'getAllHome'])->name('allhome');
 Route::get('/home-details/{id}', [HomeController::class, 'getHomeDetails'])->name('home-details');
+
+// Reservation
+Route::post('/reservation/{id}', [ReservationController::class, 'postReservation'])->name('postReservation');
+// Route::get('/edit-reservation/{id}', [ReservationController::class, 'editReservation'])->name('editReservation');
+// Route::post('/update-reservation/{id}', [ReservationController::class, 'updateReservation'])->name('updateReservation');
+// Route::get('/delete-reservation/{id}', [ReservationController::class, 'deleteReservation'])->name('deleteReservation');
+
+// Payment
+Route::get('/payment/{id}', [PaymentController::class, 'getPayment'])->name('getPayment');
 
 Route::get('/profile', function () {
     return view('components.profile');
@@ -36,10 +45,6 @@ Route::get('search', function () {
     return view('components.search');
 });
 
-// Route::get('/home-details', function () {
-//     return view('home-details');
-// })->name('home-details');
-
 Route::get('personal-info', function () {
     return view('components.personal-info');
 });
@@ -48,9 +53,6 @@ Route::get('profile', function () {
     return view('components.profile');
 });
 
-Route::get('confirm-pay', function () {
-    return view('components.confirm-pay');
-});
 Route::get('/signup', [LoginController::class, 'getSignup'])->name('signup');
 Route::post('/signup', [LoginController::class, 'postSignup'])->name('postSignup');
 Route::get('/signin', [LoginController::class, 'getSignin'])->name('signin');
@@ -91,6 +93,13 @@ Route::post('/add-service', [ServiceController::class, 'postAddService'])->name(
 Route::get('/edit-service/{id}', [ServiceController::class, 'getEditService'])->name('edit.service');
 Route::post('/edit-service/{id}', [ServiceController::class, 'postEditService'])->name('postEditService');
 Route::get('/delete-service/{id}', [ServiceController::class, 'getDeleteService'])->name('delete.service');
+
+Route::get('/view-reservation', [ReservationController::class, 'viewReservation'])->name('viewReservation');
+Route::get('/getAddReservation', [ReservationController::class, 'getAddReservation'])->name('add.reservation');
+Route::post('/postAddReservation', [ReservationController::class, 'createReservation'])->name('createReservation');
+Route::get('/edit-reservation/{id}', [ReservationController::class, 'getEditReservation'])->name('editReservation');
+Route::post('/update-reservation/{id}', [ReservationController::class, 'postEditReservation'])->name('postEditReservation');
+Route::get('/delete-reservation/{id}', [ReservationController::class, 'getDeleteReservation'])->name('deleteReservation');
 
 
 Route::prefix('google')->name('google.')->group(function () {

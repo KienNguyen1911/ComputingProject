@@ -62,10 +62,10 @@
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Example select</label>
+                                    <label for="exampleFormControlSelect1">Home Type</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="type_id" >
                                         @foreach ($type as $type)
-                                            <option value="{{$type->id}}">{{$type->type_name}}</option>
+                                            <option value="{{$type->id}} " @php if ($type->id == $home->type_id) echo 'selected'; @endphp>{{$type->type_name}}</option>
                                         @endforeach
 
                                     </select>

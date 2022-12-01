@@ -1,50 +1,54 @@
-*{
+* {
     margin: 0px;
     padding: 0px;
     max-width: 100%;
     font-family: 'Poppins', sans-serif;
 }
 
-.confirm-pay-container{
+.confirm-pay-container {
     display: flex;
-    width: 70%;
-    margin-left: 200px;
-    margin-right: 400px;
-    margin-top: 200px;
+    width: 90%;
 }
-.confirm{
+
+.confirm {
     width: 50%;
     margin-right: 80px;
 }
-.pay{
+
+.pay {
     width: 50%;
     border: 1px solid #00000042;
     border-radius: 24px;
     padding: 32px;
 }
-.pay-title{
+
+.pay-title {
     display: flex;
 }
 
-.pay-img{
-width: 40%;
+.pay-img {
+    width: 40%;
 }
 
-.pay-item-des{
-width: 50%;
-margin-left: 10px;
+.pay-item-des {
+    width: 50%;
+    margin-left: 10px;
 }
-.pay-name{
+
+.pay-name {
     margin-bottom: 8px;
     font-weight: bold;
 }
-.pay-host{
+
+.pay-host {
     font-size: 12px;
     padding-bottom: 8px;
 }
-.pay-service{
+
+.pay-service {
     font-size: 12px;
 }
+
 .dongke {
     background-color: #777e9042;
     height: 1px;
@@ -52,79 +56,97 @@ margin-left: 10px;
     margin-top: 30px;
 }
 
-.order-information{
+.order-information {
     display: flex;
     flex-wrap: wrap;
     margin-top: 30px;
     padding: 5px;
+    justify-content: space-between;
+
+
 }
-.order-detail{
+
+.order-detail {
     width: 40%;
     padding: 12px;
 }
 
-.price-title{
+.price-title {
     font-size: 24px;
     font-weight: bold;
     margin-top: 32px;
     margin-bottom: 25px;
 }
 
-.price-item{
+.price-item {
     display: flex;
     width: 100%;
     padding: 8px 12px 8px 12px;
     margin-bottom: 4px;
 
 }
-.price-item-name{
-font-size: 14px;
-margin-right: auto;
-}
-.price-item-cost{
-font-size: 14px;
-margin-left: auto;
+
+.price-item-name {
+    font-size: 14px;
+    margin-right: auto;
 }
 
-.st{
+.price-item-cost {
+    font-size: 14px;
+    margin-left: auto;
+}
+
+.st {
     text-align: center;
     margin-top: 32px;
     font-size: 12px;
 }
 
-.bill-material{
+.bill-material {
     display: flex;
 }
-.bill-icon{
+
+.bill-day{
+    width: 50%;
+    margin-right: 10px;
+    position: relative;
+}
+
+.bill-icon {
     flex: 2;
     margin-top: 10px;
     text-align: center;
+    position: absolute;
+    top: 0%;
+    right: 20px;
 }
 
 
 
-.bill-title{
+.bill-title {
     font-size: 24px;
     font-weight: bold;
     padding-top: 32px;
     padding-bottom: 25px;
 }
 
- .email-title{
-font-family: 'Poppins', sans-serif;
-font-weight: bold;
+.email-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
 }
-.email-input-message{
+
+.email-input-message {
     text-overflow: clip;
 }
 
-.button-btn{
+.button-btn {
     background-color: #2059ea;
     color: azure;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
 }
-.confirm-btn :hover{
-    background-color:#2e25cd ;
+
+.confirm-btn :hover {
+    background-color: #2e25cd;
     transition: 0.5s;
 }

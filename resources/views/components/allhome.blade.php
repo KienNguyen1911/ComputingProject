@@ -20,7 +20,7 @@
                                 $home_image = DB::table('images')->where('home_id', $home_id)->first();
                                 // dd($home_image);
                             @endphp
-                            <a href="{{ route('home-details', ['id' => $home->id]) }}" class="browse-item col-lg-3">
+                            <a href="{{ route('home-details', ['id' => $home->id]) }}" class="browse-item col-md-4 col-lg-3 ">
                                 <div class="browse-preview">
                                     <img src="/homes_image/{{$home_image->image}}" alt="">
                                     <div class="status-black browse__category">20% off</div>

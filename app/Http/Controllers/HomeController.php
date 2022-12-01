@@ -17,8 +17,10 @@ class HomeController extends Controller
     public function getHome()
     {
         $data = Home::all();
+        $type = Type::all();
         // $service = Service::all();
-        return view('admin.product-manage.view', ['data' => $data]);
+        // dd($data);
+        return view('admin.product-manage.view', ['data' => $data, 'type' => $type]);
     }
 
     public function getAddHome()
@@ -96,7 +98,8 @@ class HomeController extends Controller
     public function getEditHome($id)
     {
         $home = Home::find($id);
-        if (!$home) abort(404);
+        // dd($home);
+        // if (!$home) abort(404);
         $type = Type::all();
         $service = Service::all();
         $servicehome = json_decode($home->service);
@@ -185,7 +188,6 @@ class HomeController extends Controller
         $home = Home::find($id);
         $servicehome = json_decode($home->service);
         $image = Image::where('home_id', $id)->get();
-
         // dd($image);
         return view('home-details', ['home' => $home, 'image' => $image, 'servicehome' => $servicehome]);
     }

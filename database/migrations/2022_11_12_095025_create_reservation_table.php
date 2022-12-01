@@ -16,7 +16,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reservation', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
 
             // $table->unsignedBigInteger('home_id');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->date('start');
             $table->date('end');
-            $table->float('total_price');
+            // $table->float('total_price');
             $table->timestamps();
         });
     }

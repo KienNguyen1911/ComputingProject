@@ -9,20 +9,27 @@
     <title>
         Now UI Dashboard by Creative Tim
     </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-        name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-        integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <!-- CSS Files -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+    
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../demo/demo.css" rel="stylesheet" />
+
+    <!-- Jquery daterangepicker -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 </head>
 
 <body class="">
@@ -31,10 +38,10 @@
             <!-- Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow" -->
             <div class="logo">
                 <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-                    CT
+                    FH
                 </a>
                 <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                    Creative Tim
+                    Fleet Homestay
                 </a>
             </div>
             <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -43,12 +50,6 @@
                         <a href="{{ route('admin.dashboard') }}">
                             <i class="now-ui-icons design_app"></i>
                             <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li class=" {{ request()->is('admin/demo') ? 'active' : '' }}">
-                        <a href="{{ route('admin.demo') }}">
-                            <i class="now-ui-icons education_atom"></i>
-                            <p>Demo</p>
                         </a>
                     </li>
 
@@ -64,10 +65,10 @@
                             <p>User Profile</p>
                         </a>
                     </li>
-                    <li class="{{ request()->is('admin/tables') ? 'active' : '' }}">
-                        <a href="{{ route('admin.tables') }}">
+                    <li class="{{ request()->is('admin/reservation-manage/*') ? 'active' : '' }}">
+                        <a href="{{ route('viewReservation') }}">
                             <i class="now-ui-icons design_bullet-list-67"></i>
-                            <p>Table List</p>
+                            <p>Manage Reservation</p>
                         </a>
                     </li>
                     <li class="{{ request()->is('admin/type-manage') ? 'active' : '' }}">
@@ -153,12 +154,13 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link" href="#pablo">
-                                        <img src="{{Auth::user()->avatar_original}}" alt="" srcset="" style="border-radius: 50%; width:30px">
-                                        <p>
-                                            <span class="d-lg-none d-md-block">Account</span>
-                                        </p>
-                                    </a>
+                                <a class="nav-link" href="#pablo">
+                                    <img src="{{ Auth::user()->avatar_original }}" alt="" srcset=""
+                                        style="border-radius: 50%; width:30px">
+                                    <p>
+                                        <span class="d-lg-none d-md-block">Account</span>
+                                    </p>
+                                </a>
                                 {{-- {{Auth::user()->user_name}} --}}
                             </li>
 
@@ -198,20 +200,31 @@
                 @yield('edit-service')
 
                 {{-- user --}}
+
+                {{-- reservation --}}
+                @yield('view-reservation')
+                @yield('add-reservation')
+                @yield('edit-reservation')
+                
+                {{-- contact --}}
             </div>
         </div>
     </div>
     <!--   Core JS Files   -->
-    <script src="../js/core/jquery.min.js"></script>
+    {{-- <script src="../js/core/jquery.min.js"></script> --}}
     <script src="../js/core/popper.min.js"></script>
     <script src="../js/core/bootstrap.min.js"></script>
     <script src="../js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
     <!-- Chart JS -->
     <script src="../js/plugins/chartjs.min.js"></script>
+
     <!--  Notifications Plugin    -->
     <script src="../js/plugins/bootstrap-notify.js"></script>
+
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
     <script src="../demo/demo.js"></script>
