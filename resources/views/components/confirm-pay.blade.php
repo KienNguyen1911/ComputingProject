@@ -23,9 +23,9 @@
             <div class="bill">
                 <div class="bill-title">Your trip</div>
                 <div class="bill-material">
-                    <div class="bill-day">
+                    < class="bill-day">
                         <div class="bill-item-title">Date</div>
-                        <div class="bill-select">May 15 - 22</div></div>
+                        <div class="bill-select">May 15 - 22</div>
                         <div class="bill-icon"><button >nag</button>
                     </div>
                     <div class="bill-guest">

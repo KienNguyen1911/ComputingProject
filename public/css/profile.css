@@ -1,17 +1,29 @@
-.cover-head{
+.cover-head {
     position: relative;
 }
-.cover-image{
+.cover-image {
     width: 100%;
     border-radius: 24px;
 }
-.cover-btn{
+.cover-btn {
     position: absolute;
     right: 16px;
     bottom: 16px;
-    transition: opacity .2s;
-    color: #FCFCFD;
-    border: 2px solid #FCFCFD;
+    transition: opacity 0.2s;
+    color: #fcfcfd;
+    border: 2px solid #fcfcfd;
     background: none;
     font-weight: 600;
+}
+.section-menu-title {
+    display: flex;
+    justify-content: space-around;
+}
+.section-menu-image {
+    display: flex;
+    justify-content: center;
+}
+.section-menu-name {
+    display: flex;
+    justify-content: center;
 }
