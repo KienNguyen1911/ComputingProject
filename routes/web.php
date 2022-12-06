@@ -22,13 +22,14 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
+// ======================== User ========================
 Route::get('/', [HomeController::class, 'landingPage'])->name('landingPage');
-
 
 Route::get('/allhome', [HomeController::class, 'getAllHome'])->name('allhome');
 Route::get('/home-details/{id}', [HomeController::class, 'getHomeDetails'])->name('home-details');
 
 // Reservation
+Route::get('/reservations-list', [ReservationController::class, 'getReservationList'])->name('reservations-list');
 Route::post('/reservation/{id}', [ReservationController::class, 'postReservation'])->name('postReservation');
 // Route::get('/edit-reservation/{id}', [ReservationController::class, 'editReservation'])->name('editReservation');
 // Route::post('/update-reservation/{id}', [ReservationController::class, 'updateReservation'])->name('updateReservation');
@@ -36,6 +37,10 @@ Route::post('/reservation/{id}', [ReservationController::class, 'postReservation
 
 // Payment
 Route::get('/payment/{id}', [PaymentController::class, 'getPayment'])->name('getPayment');
+Route::post('/payment/{id}', [PaymentController::class, 'postPayment'])->name('postPayment');
+// VNPay Payment
+Route::post('/vnpay-payment', [PaymentController::class, 'postVNPay'])->name('postVNPay');
+Route::get('/vnpay-return', [PaymentController::class, 'getVNPayReturn'])->name('getVNPayReturn');
 
 Route::get('/profile', function () {
     return view('components.profile');

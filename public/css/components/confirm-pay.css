@@ -5,6 +5,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+p{
+    margin-bottom: 0px !important;
+}
+
 .confirm-pay-container {
     display: flex;
     width: 90%;
@@ -59,7 +63,7 @@
 .order-information {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 30px;
+    margin-top: 10px;
     padding: 5px;
     justify-content: space-between;
 
@@ -83,7 +87,12 @@
     width: 100%;
     padding: 8px 12px 8px 12px;
     margin-bottom: 4px;
+}
 
+.price-item:last-child {
+    background-color: #8080802e;
+    border-radius: 20px;
+    font-weight: 700;
 }
 
 .price-item-name {
@@ -147,6 +156,6 @@
 }
 
 .confirm-btn :hover {
-    background-color: #2e25cd;
+    /* background-color: #2e25cd; */
     transition: 0.5s;
 }

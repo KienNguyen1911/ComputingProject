@@ -92,7 +92,7 @@
                                             alt="" style="border-radius: 50%; width:30px">
                                     </button>
                                     <ul class="dropdown-menu " style="left: -90px; border-radius:16px">
-                                        <li><a class="dropdown-item" href="#">
+                                        <li><a class="dropdown-item" href="{{ route('reservations-list') }}">
                                                 <i class="fa-regular fa-building" style="margin-right: 10px"></i>
                                                 View Booking
                                             </a></li>

@@ -48,7 +48,23 @@ class ReservationController extends Controller
         }
     }
 
+    public function getReservationList()
+    {
+        # code...
+        if(Auth::check() == 'true')
+        {
+            $userid = Auth::user()->id;
+            $data = DB::table('reservations')->where('user_id', $userid)->get();
+            // $image = DB::table('images')->where('home_id', $data->home_id)->first();
+            // dd($image);
+            return view('user.reservations-list', ['data' => $data]);
+        }
+        else
+        {
+            return redirect()->route('signin');
+        }
 
+    }
 
 
     // ==================== ADMIN ====================

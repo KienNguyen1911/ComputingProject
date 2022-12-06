@@ -17,6 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Reservation::class);
             $table->decimal('total_price', 10, 2);
+            $table->text('note');
+            $table->string('vnp_ResponseCode');
+            $table->string('vnp_TransactionNo');
+            $table->string('vnp_BankCode');
+            $table->date('vnp_PayDate')->comment('Day trading');
             $table->timestamps();
         });
     }
