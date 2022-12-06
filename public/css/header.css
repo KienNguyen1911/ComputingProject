@@ -9,6 +9,7 @@
 .navbar-left {
     display: flex;
     justify-content: flex-start;
+    
 }
 .navbar-logo {
     padding-right: 50px;
@@ -25,13 +26,15 @@
     line-height: 16px;
     color: #777e90;
 }
+
 .navbar-feature__text {
 }
 .navbar-feature__icon {
     margin-left: 10px;
+    
 }
 .navbar-feature:hover {
-    color: #000;
+    color:#777e90;
     cursor: pointer;
 }
 
@@ -198,4 +201,50 @@
 
 .nav-items__icon__position {
     margin-right: 10px;
+}
+.dropdown-menu.show{
+    border-radius: 25px;
+    
+}
+.dropdown-menu__show {
+    width: 250px;
+    padding: 16px;
+    font-weight: 700;
+    line-height: 2;
+    border-radius: 25px;
+    font-size: 16px;
+    margin: unset;
+    display: block;
+    top: 40px;
+}
+
+
+
+.dropdown-item {
+    border-radius: 25px;
+    font-family: 'Poppins', sans-serif;
+   
+}
+.btn-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16px;
+    color: white;
+}
+.btn-secondary{
+display: flex;
+justify-content: center;
+align-items: center;
+border: 1px solid #e3dfdf;
+border-radius: 20px;
+background-color: #fff;
+color: white;
+font-size: 14px;
+font-weight: 700;
+line-height: 16px;
+text-decoration: none;
 }
