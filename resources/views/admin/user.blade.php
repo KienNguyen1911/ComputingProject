@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <label>Phone</label>
                                     <input type="text" class="form-control" placeholder="Phone number"
-                                        name="user_phonenumber" value="{{ Auth::user()->user_phonenumber }}">
+                                        name="phonenumber" value="{{ Auth::user()->phonenumber }}">
                                 </div>
                             </div>
                             <div class="col-md-6 pl-1">
@@ -46,14 +46,14 @@
                                 <div class="form-group">
                                     <label>Address</label>
                                     <input type="text" class="form-control" placeholder="Home Address"
-                                        value="{{ Auth::user()->user_address }}" name="user_address">
+                                        value="{{ Auth::user()->address }}" name="address">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Role</label>
                                     <input type="text" class="form-control"  placeholder="Home Address"
-                                        value="{{ Auth::user()->user_role }}" name="user_role">
+                                        value="{{ Auth::user()->role }}" name="role">
                                 </div>
                             </div>
                         </div>

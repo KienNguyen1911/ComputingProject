@@ -11,7 +11,7 @@ class ProfileController extends Controller
 {
     //
 
-    
+
     public function getProfile()
     {
         return view('admin.user');
@@ -23,12 +23,11 @@ class ProfileController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->user_address = $request->user_address;
-        $user->user_phonenumber = $request->user_phonenumber;
-        $user->user_role = $request->user_role;
+        $user->address = $request->address;
+        $user->phonenumber = $request->phonenumber;
+        $user->role = $request->role;
         $user->avatar_original = $request->avatar_original;
         $user->save();
         return redirect()->back();
     }
-    
 }

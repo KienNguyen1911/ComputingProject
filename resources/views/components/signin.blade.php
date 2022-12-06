@@ -8,8 +8,6 @@
     <div class="mfp-content">
         <div class="popup popup_login" id="popup-login">
             <div class="login__item" style="display: block;">
-
-
                 <div class="login__title h3">Sign in</div>
                 <form action="{{ route('postSignin') }}" method="post">
                     @csrf
@@ -20,10 +18,10 @@
                                     required="">
                             </div>
                             <div class="field__wrap">
-                                <input class="field__input" type="password" name="password" placeholder="Password"
+                                <input class="field__input" type="password" name="password" placeholder="Password" id="showpassword"
                                     required="">
                                 <button class="field__view">
-                                    <i class="fa-solid fa-eye"></i>
+                                    <div type="button" onclick="show()"><i class="fa-solid fa-eye"></i></div>
                                 </button>
                             </div>
                         </div>
@@ -34,7 +32,7 @@
                     </div>
                 </form>
 
-                <div class="login__note">Or continue with email</div>
+                <div class="login__note">Or continue with social accounts</div>
                 <div class="login__btns">
                     <a href="{{ route('google.login') }}" type="button" class="btn" style="border: 1px solid black; margin-right: 20px">
                         <i class="fa-brands fa-google"></i>
@@ -50,3 +48,13 @@
         </div>
     </div>
 </body>
+<script>
+    function show() {
+        var x = document.getElementById("showpassword");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
