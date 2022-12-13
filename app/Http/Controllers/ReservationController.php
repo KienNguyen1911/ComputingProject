@@ -14,8 +14,7 @@ class ReservationController extends Controller
     // ==================== USER ====================
     public function postReservation(Request $request, $id)
     {
-        if(Auth::check() == 'true')
-        {
+        if (Auth::check() == 'true') {
             $userid = Auth::user()->id;
             $data = DB::table('reservations')->where('home_id', $id)->where('user_id', $userid)->first();
             // dd($data);
@@ -25,25 +24,32 @@ class ReservationController extends Controller
                 $new_reservation->home_id = $id;
                 $new_reservation->start = $request->start;
                 $new_reservation->end = $request->end;
-                // $new_reservation->total_price = $request->total_price;
-                // $new_reservation->status = $request->status;
                 $new_reservation->save();
-                // dd($new_reservation);
                 return redirect()->route('getPayment', ['id' => $new_reservation->id]);
-                // return redirect()->route('getPayment');
             } else {
-                $reservation = Reservation::find($data->id);
-                $reservation->user_id = $userid;
-                $reservation->home_id = $id;
-                $reservation->start = $request->start;
-                $reservation->end = $request->end;
-                $reservation->save();
-                return redirect()->route('getPayment', ['id' => $reservation->id]);
+                $exist_reservation = DB::table('payments')->where('reservation_id', $data->id)->first();
+                // dd($exist);
+                if ($exist_reservation == null) {
+                    $reservation = Reservation::find($data->id);
+                    $reservation->user_id = $userid;
+                    $reservation->home_id = $id;
+                    $reservation->start = $request->start;
+                    $reservation->end = $request->end;
+                    $reservation->save();
+                    return redirect()->route('getPayment', ['id' => $reservation->id]);
+                } else {
+                    $new_reservation = new Reservation();
+                    $new_reservation->user_id = Auth::user()->id;
+                    $new_reservation->home_id = $id;
+                    $new_reservation->start = $request->start;
+                    $new_reservation->end = $request->end;
+                    $new_reservation->save();
+                    return redirect()->route('getPayment', ['id' => $new_reservation->id]);
+                }
+
                 // return redirect()->back()->with('error', 'You have already booked this home');
             }
-        }
-        else
-        {
+        } else {
             return redirect()->route('signin');
         }
     }
@@ -51,19 +57,19 @@ class ReservationController extends Controller
     public function getReservationList()
     {
         # code...
-        if(Auth::check() == 'true')
-        {
+        if (Auth::check() == 'true') {
             $userid = Auth::user()->id;
             $data = DB::table('reservations')->where('user_id', $userid)->get();
+            $payment = DB::table('payments')->where('user_id', $userid)
+                ->join('reservations', 'payments.reservation_id', '=', 'reservations.id')
+                ->get();
+            // dd($payment);
             // $image = DB::table('images')->where('home_id', $data->home_id)->first();
             // dd($image);
-            return view('user.reservations-list', ['data' => $data]);
-        }
-        else
-        {
+            return view('user.reservations-list', ['data' => $data, 'payment' => $payment]);
+        } else {
             return redirect()->route('signin');
         }
-
     }
 
 
@@ -77,7 +83,7 @@ class ReservationController extends Controller
             ->join('users', 'reservations.user_id', '=', 'users.id')
             ->select('reservations.*', 'homes.home_name', 'users.name')
             ->get();
-            // dd($data);
+        // dd($data);
         return view('admin.reservation-manage.view', ['data' => $data]);
     }
 
@@ -97,8 +103,7 @@ class ReservationController extends Controller
 
         $check = DB::table('reservations')->where('user_id', $userid)->where('home_id', $homeid)->first();
 
-        if($check == null)
-        {
+        if ($check == null) {
             $new_reservation = new Reservation();
             $new_reservation->user_id = $request->user_id;
             $new_reservation->home_id = $request->home_id;
@@ -108,9 +113,7 @@ class ReservationController extends Controller
             // $new_reservation->status = $request->status;
             $new_reservation->save();
             return redirect()->route('viewReservation');
-        }
-        else
-        {
+        } else {
             $reservation = Reservation::find($check->id);
             // $new_reservation = new Reservation();
             $reservation->user_id = $request->user_id;
@@ -123,7 +126,6 @@ class ReservationController extends Controller
             return redirect()->route('viewReservation');
             // return redirect()->back()->with('error', 'This user has already booked this home');
         }
-
     }
 
     public function getEditReservation($id)

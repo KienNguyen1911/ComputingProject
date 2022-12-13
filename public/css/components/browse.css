@@ -72,6 +72,7 @@ a {
     margin-bottom: 1rem;
     overflow: hidden;
     border-radius: 2rem;
+    position: relative;
 }
 
 .browse-preview img {
@@ -115,7 +116,7 @@ a {
 
 .browse__category {
     position: absolute;
-    top: 185px;
+    top: 30px;
     background-color: black;
     color: white;
     margin-left: 12px;

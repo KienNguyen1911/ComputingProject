@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class PaymentController extends Controller
 {
-    //
     public function getPayment(Request $request, $id)
     {
 
         $data = Reservation::find($id);
-        // $value = $_SESSION['reservation_id'] = $id;
-        // dd($value);
         return view('components.payment', ['data' => $data]);
     }
 
@@ -33,7 +32,7 @@ class PaymentController extends Controller
         $vnp_TmnCode = "RM8VTI9U"; //Mã website tại VNPAY 
         $vnp_HashSecret = "YDBWOBZLBAWFDGIVAUIDWDFCASTQAJRH"; //Chuỗi bí mật
 
-        $randomString = Str::random(30);
+        $randomString = $request->id;
         $vnp_TxnRef = $randomString; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = $request->order_desc;
         $vnp_OrderType = $request->order_type;
@@ -49,7 +48,8 @@ class PaymentController extends Controller
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
 
         // session_start();
-        $_SESSION['reservation_id'] = $request->id;
+        $value = $request->id;
+        // dd($value);
         // dd($_SESSION['reservation_id']);
 
         $inputData = array(
@@ -65,9 +65,9 @@ class PaymentController extends Controller
             "vnp_OrderType" => $vnp_OrderType,
             "vnp_ReturnUrl" => route('getVNPayReturn'),
             "vnp_TxnRef" => $vnp_TxnRef,
-            "vnp_Bill_Mobile"=>$request->id
+            // "RESERVATION_ID"=>$request->id
         );
-        dd($inputData);
+        // dd($inputData);
 
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {
             $inputData['vnp_BankCode'] = $vnp_BankCode;
@@ -115,12 +115,105 @@ class PaymentController extends Controller
         # code...
         // dd($request->toArray());
         $vnpayData = $request->all();
-        dd($vnpayData);
+        $reservation = Reservation::find($vnpayData['vnp_TxnRef']);
+        $vnp_TxnRef = $reservation->id;
+        $vnp_Amount = $vnpayData['vnp_Amount'] / 100;
+        $vnp_BankCode = $vnpayData['vnp_BankCode'];
+        $vnp_CardType = $vnpayData['vnp_CardType'];
+        $vnp_PayDate = $vnpayData['vnp_PayDate'];
+        $vnp_ResponseCode = $vnpayData['vnp_ResponseCode'];
+        $vnp_TmnCode = $vnpayData['vnp_TmnCode'];
+        $vnp_TransactionNo = $vnpayData['vnp_TransactionNo'];
+        $vnp_OrderInfo = $vnpayData['vnp_OrderInfo'];
+        $vnp_BankTranNo = $vnpayData['vnp_BankTranNo'];
+
+        // $vnp_PayDate = date('Y-m-d H:i:s', strtotime($vnp_PayDate));
+
+        $payment = new Payment();
+        $payment->reservation_id = $vnp_TxnRef;
+        $payment->total_price = $vnp_Amount;
+        $payment->note = $vnp_OrderInfo;
+        $payment->vnp_TmnCode = $vnp_TmnCode;
+        $payment->vnp_TransactionNo = $vnp_TransactionNo;
+        $payment->vnp_BankCode = $vnp_BankCode;
+        $payment->vnp_PayDate = $vnp_PayDate;
+        // dd($payment);
+        $payment->save();
+
+        return view('vnpay.vnpay_return', ['payment' => $payment]);
     }
 
-    public function randomString()
+    public function getPaymentDetail(Request $request, $id)
     {
-        $randomString = Str::random(30);
-        return $randomString;
+        # code...
+        $payment = DB::table('payments')->where('reservation_id', $id)->first();
+        return view('vnpay.vnpay_return', ['payment' => $payment]);
+    }
+
+    // ================== ADMIN ==================
+    public function getPaymentList()
+    {
+        # code...
+        $data = DB::table('payments')
+        ->join('reservations', 'payments.reservation_id', '=', 'reservations.id')
+        ->join('homes', 'reservations.home_id', '=', 'homes.id')
+        ->join('users', 'reservations.user_id', '=', 'users.id')	
+        ->select('payments.*', 'reservations.start', 'reservations.end','reservations.user_id','homes.home_name', 'users.name as user_name')
+        ->get();
+        // dd($data);
+        return view('admin.payment-manage.view', ['data' => $data]);
+    }
+
+    public function getPaymentDetailAdmin(Request $request, $id)
+    {
+        # code...
+        $payment = DB::table('payments')->where('payments.id', $id)
+        ->join('reservations', 'payments.reservation_id', '=', 'reservations.id')
+        ->join('homes', 'reservations.home_id', '=', 'homes.id')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->first();
+        // dd($payment);
+        return view('admin.payment-manage.payment-details', ['payment' => $payment]);
+    }
+
+    public function getDeletePayment($id)
+    {
+        # code...
+        $payment = Payment::find($id);
+        $payment->delete();
+        return redirect()->back()->with('success', 'Xóa thành công');
+    }
+
+    public function searchPayment(Request $request)
+    {
+        # code...
+        $data = DB::table('payments')
+        ->join('reservations', 'payments.reservation_id', '=', 'reservations.id')
+        ->join('homes', 'reservations.home_id', '=', 'homes.id')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->select('payments.*', 'reservations.start', 'reservations.end','reservations.user_id','homes.home_name', 'users.name as user_name')
+        ->where('users.name', 'like', '%'.$request->search.'%')
+        ->orWhere('homes.home_name', 'like', '%'.$request->search.'%')
+        ->orWhere('users.id', 'like', '%'.$request->search.'%')
+        ->get();
+        return view('admin.payment-manage.view', ['data' => $data]);
+    }
+
+    public function filterPaymentByDate(Request $request)
+    {
+        # code...
+        // convert date to text
+        
+        $date = explode('-', $request->date);
+        $date = implode('', $date);
+        // dd($date);
+        $data = DB::table('payments')
+        ->join('reservations', 'payments.reservation_id', '=', 'reservations.id')
+        ->join('homes', 'reservations.home_id', '=', 'homes.id')
+        ->join('users', 'reservations.user_id', '=', 'users.id')
+        ->select('payments.*', 'reservations.start', 'reservations.end','reservations.user_id','homes.home_name', 'users.name as user_name')
+        ->where('payments.vnp_PayDate', 'like', '%'.$date.'%')
+        ->get();
+        return view('admin.payment-manage.view', ['data' => $data]);
     }
 }

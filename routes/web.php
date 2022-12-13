@@ -10,6 +10,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\SearchController;
+
 // use PaymentController;
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +33,12 @@ Route::get('/home-details/{id}', [HomeController::class, 'getHomeDetails'])->nam
 // Reservation
 Route::get('/reservations-list', [ReservationController::class, 'getReservationList'])->name('reservations-list');
 Route::post('/reservation/{id}', [ReservationController::class, 'postReservation'])->name('postReservation');
-// Route::get('/edit-reservation/{id}', [ReservationController::class, 'editReservation'])->name('editReservation');
-// Route::post('/update-reservation/{id}', [ReservationController::class, 'updateReservation'])->name('updateReservation');
-// Route::get('/delete-reservation/{id}', [ReservationController::class, 'deleteReservation'])->name('deleteReservation');
 
 // Payment
 Route::get('/payment/{id}', [PaymentController::class, 'getPayment'])->name('getPayment');
 Route::post('/payment/{id}', [PaymentController::class, 'postPayment'])->name('postPayment');
+Route::get('/payment-detail/{id}', [PaymentController::class, 'getPaymentDetail'])->name('getPaymentDetail');
+
 // VNPay Payment
 Route::post('/vnpay-payment', [PaymentController::class, 'postVNPay'])->name('postVNPay');
 Route::get('/vnpay-return', [PaymentController::class, 'getVNPayReturn'])->name('getVNPayReturn');
@@ -49,6 +50,10 @@ Route::get('/profile', function () {
 Route::get('search', function () {
     return view('components.search');
 });
+
+Route::post('search', [SearchController::class, 'postSearch'])->name('postSearch');
+Route::post('filter', [SearchController::class, 'postFilter'])->name('postFilter');
+
 
 Route::get('personal-info', function () {
     return view('components.personal-info');
@@ -65,6 +70,8 @@ Route::post('/signin', [LoginController::class, 'postLogin'])->name('postSignin'
 
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
+
+// ======================== Admin ========================
 Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('admin.dashboard');
     Route::get('/demo', [DashboardController::class, 'getDemo'])->name('admin.demo');
@@ -88,6 +95,13 @@ Route::post('/add-home', [HomeController::class, 'postAddHome'])->name('postAddH
 Route::get('/edit-home/{id}', [HomeController::class, 'getEditHome'])->name('edit.home');
 Route::post('/edit-home/{id}', [HomeController::class, 'postEditHome'])->name('postEditHome');
 Route::get('/delete-home/{id}', [HomeController::class, 'getDeleteHome'])->name('delete.home');
+Route::post('/search-home', [HomeController::class, 'searchHomeAdmin'])->name('searchHomeAdmin');
+
+// Filter Home
+Route::post('/filter-home-by-type', [HomeController::class, 'filterHomeByType'])->name('filterHomeByType');
+Route::post('/filter-home-by-name', [HomeController::class, 'filterHomeByName'])->name('filterHomeByName');
+Route::post('/filter-home-by-price', [HomeController::class, 'filterHomeByPrice'])->name('filterHomeByPrice');
+Route::post('/filter-home-by-address', [HomeController::class, 'filterHomeByAddress'])->name('filterHomeByAddress');
 
 Route::get('/view-image/{id}', [HomeController::class, 'images'])->name('images.home');
 Route::get('/delete-image/{id}', [HomeController::class, 'deleteImage'])->name('deleteImage.home');
@@ -106,7 +120,11 @@ Route::get('/edit-reservation/{id}', [ReservationController::class, 'getEditRese
 Route::post('/update-reservation/{id}', [ReservationController::class, 'postEditReservation'])->name('postEditReservation');
 Route::get('/delete-reservation/{id}', [ReservationController::class, 'getDeleteReservation'])->name('deleteReservation');
 
-
+Route::get('/payment', [PaymentController::class, 'getPaymentList'])->name('getPaymentList');
+Route::get('/payment-details/{id}', [PaymentController::class, 'getPaymentDetailAdmin'])->name('getPaymentDetailAdmin');
+Route::get('/payment-delete/{id}', [PaymentController::class, 'getDeletePayment'])->name('deletePayment');
+Route::post('/payment-search', [PaymentController::class, 'searchPayment'])->name('searchPayment');
+Route::post('/payment-filter-by-date', [PaymentController::class, 'filterPaymentByDate'])->name('filterPaymentByDate');
 Route::prefix('google')->name('google.')->group(function () {
     Route::get('login', [LoginController::class, 'loginWithGoogle'])->name('login');
     Route::any('callback', [LoginController::class, 'callBackFromGoogle'])->name('callback');
@@ -117,4 +135,3 @@ Route::prefix('facebook')->name('facebook.')->group(function () {
     Route::any('callback', [LoginController::class, 'callBackFromFacebook'])->name('callback');
 });
 
-Route::get('components/confirm-pay', [PaymentController::class, 'getPayment'])->name('payment');

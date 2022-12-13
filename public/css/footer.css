@@ -49,9 +49,9 @@ a {
 
 .footer-arrow {
     position: absolute;
-    top: -15px;
-    right: 22px;
+    right: 7px;
     width: 32px;
+    top: -66px;
 }
 
 .line {

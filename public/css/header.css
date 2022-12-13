@@ -169,9 +169,12 @@
 }
 .search-bar {
     display: flex;
+    flex-direction: column;
 }
 .search-bar__icon {
     font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 10px;
 }
 .search-bar__text {
     margin-left: 10px;
@@ -186,6 +189,10 @@
     line-height: 30px;
     font-size: 16px;
     color: #777e90;
+    border: none;
+    border-bottom: 1px solid;
+    outline: none;
+    width: 200px;
 }
 .search-bar__icon__background {
     border-radius: 50%;

@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="footer-motto">Join our community 🔥</div>
-                    <div>
+                    <div style="position: relative">
                         <input type="text" class="form-control footer-email" placeholder="Enter your email">
                         <svg class="footer-arrow" id="arrow-right-circle-fill" xmlns="http://www.w3.org/2000/svg"
                             width="174.449" height="174.449" viewBox="0 0 174.449 174.449">

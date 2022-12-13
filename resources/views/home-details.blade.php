@@ -7,7 +7,6 @@
 
 {{-- LINK JQUERY --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -117,7 +116,7 @@
                                     <div class="modal-header">
                                         <h5 class="modal-title text-center" id="exampleModalLabel">Images about
                                             {{ $home->home_name }}</h5>
-                                            
+
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -175,9 +174,9 @@
                             transition: transform .2s ease-in-out;
                         }
 
-                        .modal-image:hover  {
+                        .modal-image:hover {
                             transform: scale(1.1);
-                        } 
+                        }
 
                         .overlay {
                             position: fixed;
@@ -231,7 +230,7 @@
                                 const src = image.getAttribute('src');
                                 modalOverlayImage.setAttribute('src', src);
                                 modalOverlayImage.style.width = '100%';
-                                modalOverlayInner.style.width = '70%';	
+                                modalOverlayInner.style.width = '70%';
                             });
                         });
 
@@ -304,7 +303,10 @@
                     <div class="receipt-head">
                         <div class="receipt-details">
                             <div class="receipt-cost" id="price">
-                                ${{ $home->home_price }} <span>/night</span>
+                                @php
+                                    $home_price = number_format($home->home_price, 0, ',', '.');
+                                @endphp
+                                VND {{ $home_price }} <span>/night</span>
                             </div>
                             <div class="receipt-rating">
                                 <div class="product-rating">
@@ -331,7 +333,7 @@
                                     <div class="receipt-box">
                                         <div class="receipt-category">Check-in</div>
                                         <input type="text" name="start" class="daterange form-control"
-                                            value="" placeholder="YYYY-MM-DD" required/>
+                                            value="" placeholder="YYYY-MM-DD" required />
                                     </div>
                                 </div>
                             </div>
@@ -344,7 +346,7 @@
                                     <div class="receipt-box">
                                         <div class="receipt-category">Check-out</div>
                                         <input type="text" name="end" class="daterange form-control"
-                                            value="" placeholder="YYYY-MM-DD" required/>
+                                            value="" placeholder="YYYY-MM-DD" required />
                                     </div>
                                 </div>
                             </div>
@@ -369,25 +371,25 @@
                             <span>Calculate</span>
                         </div> --}}
                         {{-- FEES --}}
-                        <div class="receipt-table">
+                        {{-- <div class="receipt-table">
                             <div class="receipt-line">
-                                <div class="receipt-cell">$119 x 7 nights</div>
-                                <div class="receipt-cell">$833</div>
+                                <div class="receipt-cell">VND 119 x 7 nights</div>
+                                <div class="receipt-cell">VND 833</div>
                             </div>
                             <div class="receipt-line">
                                 <div class="receipt-cell">10% campaign discount</div>
-                                <div class="receipt-cell">-$125</div>
+                                <div class="receipt-cell">-VND 125</div>
                             </div>
                             <div class="receipt-line">
                                 <div class="receipt-cell">Service fee</div>
-                                <div class="receipt-cell">$103</div>
+                                <div class="receipt-cell">VND 103</div>
                             </div>
 
                             <div class="receipt-line">
                                 <div class="receipt-cell">Total</div>
-                                <div class="receipt-cell" id="total-price">$857</div>
+                                <div class="receipt-cell" id="total-price">VND 857</div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <button class="receipt-btn" type="submit">
                             <span>Reserve</span>
@@ -436,6 +438,7 @@
         </div>
     </div> --}}
 
+    {{-- dd($payment->start); --}}
     <script type="text/javascript">
         $(function() {
             $(".daterange").daterangepicker({
@@ -443,12 +446,28 @@
                 locale: {
                     cancelLabel: "Clear",
                 },
-                minDate: moment().subtract(1, "days"),
+                minDate: moment().subtract(0, "days"),
+
+
+                isInvalidDate: function(date) {
+                    // create a variable to hold the date
+                    var paymentDate = <?php echo json_encode($payment); ?>;
+                    // for loop to check if the date is in the array
+                    for (var i = 0; i < paymentDate.length; i++) {
+                        // if the date is in the array return true
+                        for (var m = moment(paymentDate[i].start); m.isBefore(paymentDate[i].end) ; m.add(1, "days")) {
+                            if (date.format('YYYY-M-D') == m.format('YYYY-M-D')) {
+                                return true;
+                            }
+                        }
+                    }
+                }
             });
 
             $(".daterange").on("apply.daterangepicker", function(ev, picker) {
                 $('input[name="start"]').val(picker.startDate.format("YYYY-MM-DD"));
                 $('input[name="end"]').val(picker.endDate.format("YYYY-MM-DD"));
+                
             });
 
             $('input[name="start"]').on(

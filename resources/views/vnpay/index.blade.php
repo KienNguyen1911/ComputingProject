@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    @include('components.header')
     <div class="container">
         <div class="header clearfix">
             <h3 class="text-muted">VNPAY DEMO</h3>

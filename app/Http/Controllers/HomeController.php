@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Home;
 use App\Models\Image;
+use App\Models\Payment;
 use App\Models\Type;
 use Illuminate\Support\Facades\DB;
 use PHPUnit\Framework\Constraint\Count;
 use App\Models\Service;
+use Illuminate\Support\Facades\Redis;
 
 class HomeController extends Controller
 {
@@ -16,10 +18,10 @@ class HomeController extends Controller
     // ==================== ADMIN =================================
     public function getHome()
     {
-        $data = Home::all();
-        $type = Type::all();
-        // $service = Service::all();
-        // dd($data);
+        $data = DB::table('homes')->get();
+
+        // dd($home_address);
+        $type = DB::table('types')->get();
         return view('admin.product-manage.view', ['data' => $data, 'type' => $type]);
     }
 
@@ -155,14 +157,74 @@ class HomeController extends Controller
         return redirect()->route('view.home');
     }
 
+    public function searchHomeAdmin(Request $request)
+    {
+        $search = $request->search;
+        $data = Home::where('home_name', 'like', '%' . $search . '%')->get();
+        $type = Type::all();
+        return view('admin.product-manage.view', ['data' => $data, 'type' => $type]);
+    }
+
+    public function filterHomeByName(Request $request) {
+        // dd($request->all());
+        $type = Type::all();
+        if ($request->home_name == 0) {
+            $data = DB::table('homes')->orderBy('home_name', 'asc')->get();
+        } else if ($request->home_name == 1) {
+            $data = DB::table('homes')->orderBy('home_name', 'desc')->get();
+        } else {
+            $data = Home::all();
+        }
+        return view('admin.product-manage.view', ['data' => $data, 'type' => $type]);
+    }
+
+    public function filterHomeByType(Request $request)
+    {
+        // $query = Home::query();
+        $type = Type::all();
+        if ($request->type_id == "null") {
+            $data = DB::table('homes')->get();
+        } else {
+            $data = DB::table('homes')->where('type_id', $request->type)->get();
+        }
+        return view('admin.product-manage.view', ['data' => $data, 'type' => $type]);
+    }
+
+    public function filterHomeByPrice(Request $request) {
+        $type = Type::all();
+        if ($request->home_price == 0) {
+            $data = DB::table('homes')->orderBy('home_price', 'desc')->get();
+        } else if ($request->home_price == 1) {
+            $data = DB::table('homes')->orderBy('home_price', 'asc')->get();
+        } else {
+            $data = Home::all();
+        }
+        return view('admin.product-manage.view', ['data' => $data, 'type' => $type]);
+    }
+
+    public function filterHomeByAddress(Request $request) {
+        $type = Type::all();
+        if ($request->home_address == "no") {
+            $data = DB::table('homes')->get();
+        } else  {
+            $data = DB::table('homes')->where('home_address', $request->home_address)->get();
+        } 
+        return view('admin.product-manage.view', ['data' => $data, 'type' => $type]);
+    }
+
+
     // ==================== USER =================================
     public function landingPage()
     {
         # code...
-        $data = Home::all();
+        // $home = Home::all();
+        // $home = array_slice($home, 0, 4);
+        $home = DB::table('homes')->limit(4)->get();
+        // dd($home);
         $type = Type::all();
         $service = Service::all();
-        return view('welcome', ['data' => $data, 'type' => $type, 'service' => $service]);
+        $image = Image::all();
+        return view('welcome',  ['home' => $home, 'type' => $type, 'service' => $service, 'image' => $image]);
     }
 
     public function allHome()
@@ -176,6 +238,8 @@ class HomeController extends Controller
     public function getAllHome()
     {
         $home = Home::all();
+        // $home_address = $home->home_address;
+        // dd($home_address);
         $type = Type::all();
         $service = Service::all();
         $image = Image::all();
@@ -187,8 +251,15 @@ class HomeController extends Controller
     {
         $home = Home::find($id);
         $servicehome = json_decode($home->service);
+        // $home_address = $home->home_address;
         $image = Image::where('home_id', $id)->get();
-        // dd($image);
-        return view('home-details', ['home' => $home, 'image' => $image, 'servicehome' => $servicehome]);
+        $payment = DB::table('payments')
+            ->join('reservations', 'payments.reservation_id', '=', 'reservations.id')
+            ->join('homes', 'reservations.home_id', '=', 'homes.id')
+            ->where('home_id', $id)
+            ->select('reservations.start', 'reservations.end')
+            ->get();
+        // dd($payment);
+        return view('home-details', ['home' => $home, 'image' => $image, 'servicehome' => $servicehome, 'payment' => $payment]);
     }
 }

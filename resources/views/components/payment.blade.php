@@ -113,7 +113,7 @@
                         </div>
                         <div class="order-detail">
                             <p style="">Price per Night</p>
-                            <p style="font-size: 20px; font-weight:700">${{ $home->home_price }}</p>
+                            <p style="font-size: 20px; font-weight:700">{{ number_format($home->home_price, 0) }} VND </p>
                         </div>
                     </div>
 
@@ -128,25 +128,26 @@
                                     $dateStart = new DateTime($data->start);
                                     $dateEnd = new DateTime($data->end);
                                     $interval = $dateStart->diff($dateEnd);
-                                    
                                     $total = $interval->days * $home_price;
-                                    echo '$' . $home_price . ' x ' . $interval->format('%a');
+                                    // dd($tot);
+
+                                    echo  number_format($home_price, 0) .' VND'. ' x ' . $interval->format('%a');
                                 @endphp
                                 nights</div>
-                            <div class="price-item-cost" name="total_price">{{ $total }}</div>
+                            <div class="price-item-cost" name="total_price">{{ number_format($total, 0) }} VND</div>
                         </div>
-                        <div class="price-item">
+                        {{-- <div class="price-item">
                             <div class="price-item-name" style="color: #777e90;">10% campaign discount</div>
                             <div class="price-item-cost">-$125</div>
                         </div>
                         <div class="price-item">
                             <div class="price-item-name" style="color: #777e90;">Service fee</div>
                             <div class="price-item-cost">$103</div>
-                        </div>
+                        </div> --}}
                         <div class="price-item">
                             <div class="price-item-name" style="font-weight:bold; ">Total (USD)</div>
                             {{-- <div class="price-item-cost" name="total_price">${{ $total }}</div> --}}
-                            <input type="text" value="{{$total}}" name="total_price" class="" readonly style="text-align: right">
+                            <input type="text" value="{{$total}}" name="total_price" class="" readonly style="text-align: right; border: none; pointer-events: none">
                         </div>
                     </div>
 
