@@ -35,17 +35,30 @@
                 foreach ($payment as $key => $value) {
                     # code...
                     $day = date('d', strtotime($value->vnp_PayDate));
+                    if ($day < 10) {
+                        $day = substr($day, 1, 1);
+                    }
                     $daysPayDate[$day][] = $value;
                 }
-                // dd($daysPayDate);
-                // show all days in month
+                // day in month
+                $daysInMonth = [];
                 $daysInMonth = Carbon\Carbon::now()->daysInMonth;
-                // dd($daysInMonth);
+                // show all days in month local time
                 $allDays = [];
                 for ($i = 1; $i <= $daysInMonth; $i++) {
-                    $allDays[] = $i ;
+                    $allDays[] = $i;
                 }
-                // dd($allDays);
+                // total price by day in 2022
+                $totalPriceByDay = [];
+                foreach ($allDays as $day) {
+                    $totalPriceByDay[$day] = 0;
+                    if (isset($daysPayDate[$day])) {
+                        foreach ($daysPayDate[$day] as $order) {
+                            $totalPriceByDay[$day] += $order->total_price;
+                        }
+                    }
+                }
+                // dd($totalPriceByDay);
             @endphp
             <script>
                 var ctx = document.getElementById('bigChart').getContext('2d');
@@ -89,9 +102,9 @@
                             borderWidth: 2,
                             data: [
                                 // total price by day in 2022
-                                for (let i = 1; i <= daysInMonth(12, 2022); i++) {
-                                    {{ $totalPriceByDay[$i] }}
-                                }
+                                @foreach ($totalPriceByDay as $key => $value)
+                                    {{ $value }},
+                                @endforeach
                             ]
                         }]
                     },
@@ -145,7 +158,7 @@
         </div>
     </div>
     <div class="row mt-3">
-        <div class="col-lg-4">
+        <div class="col-lg-12">
             <div class="card card-chart">
                 <div class="card-header">
                     <h5 class="card-category">Global Sales</h5>
@@ -262,7 +275,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6">
+        {{-- <div class="col-lg-4 col-md-6">
             <div class="card card-chart">
                 <div class="card-header">
                     <h5 class="card-category">2018 Sales</h5>
@@ -310,10 +323,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
     <div class="row">
-        <div class="col-md-6">
+        {{-- <div class="col-md-6">
             <div class="card  card-tasks">
                 <div class="card-header ">
                     <h5 class="card-category">Backend development</h5>
@@ -407,6 +420,51 @@
                     </div>
                 </div>
             </div>
+        </div> --}}
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-category">Ranking</h5>
+                    <h4 class="card-title"> Prime Customer</h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class=" text-primary">
+                                <th> Top </th>
+                                <th> Name </th>
+                                <th> Email </th>
+                                <th class="text-right"> Paid Amount(VND) </th>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $i = 1;
+                                    // user paid amount the most
+                                    $top = DB::table('payments')
+                                        ->join('reservations', 'payments.reservation_id', '=', 'reservations.id')
+                                        ->join('users', 'reservations.user_id', '=', 'users.id')
+                                        ->select('users.name', 'users.email', DB::raw('SUM(payments.total_price) as total'))
+                                        ->groupBy('users.name', 'users.email')
+                                        ->orderBy('total', 'desc')
+                                        ->take(5)
+                                        ->get();
+                                @endphp
+                                @foreach ($top as $item)
+                                    {
+                                    <tr>
+                                        <td> {{ $i++ }} </td>
+                                        <td> {{ $item->name }} </td>
+                                        <td> {{ $item->email }} </td>
+                                        <td class="text-right"> {{ number_format($item->total) }} </td>
+                                    </tr>
+                                    }
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
             <div class="card">
@@ -418,90 +476,33 @@
                     <div class="table-responsive">
                         <table class="table">
                             <thead class=" text-primary">
-                                <th>
-                                    Name
-                                </th>
-                                <th>
-                                    Country
-                                </th>
-                                <th>
-                                    City
-                                </th>
-                                <th class="text-right">
-                                    Salary
-                                </th>
+                                <th> Rank </th>
+                                <th> Name </th>
+                                <th> City </th>
+                                <th class="text-right"> Revenue(VND) </th>
                             </thead>
+                            @php
+                                // show home is paid the most
+                                $i = 1;
+                                $top = DB::table('payments')
+                                    ->join('reservations', 'payments.reservation_id', '=', 'reservations.id')
+                                    ->join('homes', 'reservations.home_id', '=', 'homes.id')
+                                    ->select('homes.home_name', 'homes.home_address', DB::raw('SUM(payments.total_price) as total'))
+                                    ->groupBy('homes.home_name', 'homes.home_address')
+                                    ->orderBy('total', 'desc')
+                                    ->take(5)
+                                    ->get();
+                                // dd($top);
+                            @endphp
                             <tbody>
-                                <tr>
-                                    <td>
-                                        Dakota Rice
-                                    </td>
-                                    <td>
-                                        Niger
-                                    </td>
-                                    <td>
-                                        Oud-Turnhout
-                                    </td>
-                                    <td class="text-right">
-                                        $36,738
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Minerva Hooper
-                                    </td>
-                                    <td>
-                                        Curaçao
-                                    </td>
-                                    <td>
-                                        Sinaai-Waas
-                                    </td>
-                                    <td class="text-right">
-                                        $23,789
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Sage Rodriguez
-                                    </td>
-                                    <td>
-                                        Netherlands
-                                    </td>
-                                    <td>
-                                        Baileux
-                                    </td>
-                                    <td class="text-right">
-                                        $56,142
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Doris Greene
-                                    </td>
-                                    <td>
-                                        Malawi
-                                    </td>
-                                    <td>
-                                        Feldkirchen in Kärnten
-                                    </td>
-                                    <td class="text-right">
-                                        $63,542
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Mason Porter
-                                    </td>
-                                    <td>
-                                        Chile
-                                    </td>
-                                    <td>
-                                        Gloucester
-                                    </td>
-                                    <td class="text-right">
-                                        $78,615
-                                    </td>
-                                </tr>
+                                @foreach ($top as $item)
+                                    <tr>
+                                        <td> {{$i++}} </td>
+                                        <td> {{$item->home_name}} </td>
+                                        <td> {{$item->home_address}} </td>
+                                        <td class="text-right"> {{number_format($item->total)}} </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
