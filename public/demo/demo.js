@@ -219,13 +219,12 @@ demo = {
     gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
     gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.24)");
 
+    
     var myChart = new Chart(ctx, {
       type: 'line',
       data: {
-        // labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
-        labels: [
-
-        ],
+        
+        labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
         datasets: [{
           label: "Data",
           borderColor: chartColor,

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('vnp_TmnCode');
             $table->string('vnp_TransactionNo');
             $table->string('vnp_BankCode');
-            $table->date('vnp_PayDate')->comment('Day trading');
+            $table->string('vnp_PayDate')->comment('Day trading');
             $table->timestamps();
         });
     }
