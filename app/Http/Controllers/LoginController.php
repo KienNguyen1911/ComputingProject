@@ -42,7 +42,7 @@ class LoginController extends Controller
                     'avatar_original' => $user->getAvatar(),
                     'password' => Hash::make('password'),
                     'email_verified_at' => now(),
-                    'role' => 'user',
+                    'user_role' => 'user',
                 ]);
                 $saveUser->save();
             } else {
@@ -53,10 +53,10 @@ class LoginController extends Controller
                 $saveUser = User::where('email', $user->getEmail())->first();
             }
             Auth::loginUsingId($saveUser->id);
-            if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
+            if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
                 return redirect()->route('admin.dashboard');
             } else {
-                return redirect()->route('welcome');
+                return redirect()->route('landingPage');
             }
         } catch (\Throwable $th) {
             throw $th;
@@ -68,10 +68,10 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             $success = 'Logged Successfully!';
-            if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
+            if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
                 return route('admin.dashboard');
             } else {
-                return redirect()->route('welcome');
+                return redirect()->route('landingPage');
             }
         } else {
             $error = 'Email or Password is incorrect!';
@@ -117,7 +117,7 @@ class LoginController extends Controller
                     'avatar_original' => $user->getAvatar(),
                     'password' => Hash::make('password'),
                     'email_verified_at' => now(),
-                    'role' => 'user',
+                    'user_role' => 'user',
                 ]);
                 $saveUser->save();
             } else {
@@ -128,10 +128,10 @@ class LoginController extends Controller
                 $saveUser = User::where('email', $user->getEmail())->first();
             }
             Auth::loginUsingId($saveUser->id);
-            if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff') {
+            if (Auth::user()->user_role == 'admin' || Auth::user()->user_role == 'staff') {
                 return redirect()->route('admin.dashboard');
             } else {
-                return redirect()->route('welcome');
+                return redirect()->route('landingPage');
             }
         } catch (\Throwable $th) {
             throw $th;

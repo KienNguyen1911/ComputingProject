@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Home;
 
 return new class extends Migration
 {
@@ -14,9 +15,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('images', function (Blueprint $table) {
-            $table->increments('image_id');
-            $table->string('image')->nullable();
-            $table->text('image_description')->nullable();
+            $table->increments('id');
+            $table->foreignIdFor(Home::class);
+            $table->text('image');
             $table->timestamps();
         });
     }

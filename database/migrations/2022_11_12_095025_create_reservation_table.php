@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Runner\Hook;
+use App\Models\Home;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -13,17 +16,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reservation', function (Blueprint $table) {
-            $table->increments('reservation_id');
+        Schema::create('reservations', function (Blueprint $table) {
+            $table->id();
 
-            $table->unsignedInteger('home_id');
-            $table->foreign('home_id')->references('home_id')->on('homes');
-            $table->unsignedInteger('id');
-            $table->foreign('id')->references('id')->on('users');
-
-            $table->date('from_date')->nullable();
-            $table->date('to_date')->nullable();
-            $table->float('total_price')->nullable();
+            // $table->unsignedBigInteger('home_id');
+            // $table->foreign('home_id')->references('id')->on('homes');
+            $table->foreignIdFor(Home::class);
+            // $table->unsignedInteger('id');
+            // $table->foreign('id')->references('id')->on('users');
+            $table->foreignIdFor(User::class);
+            $table->date('start');
+            $table->date('end');
+            // $table->float('total_price');
             $table->timestamps();
         });
     }

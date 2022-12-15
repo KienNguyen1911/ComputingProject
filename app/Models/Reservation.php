@@ -10,12 +10,11 @@ class Reservation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'reservation_id',
         'user_id',
         'home_id',
-        'from_date',
-        'to_date',
-        'total_price',
+        'start',
+        'end',
+        // 'total_price',
         // 'status',
     ];
 

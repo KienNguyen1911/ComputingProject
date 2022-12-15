@@ -4,16 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Image;
 
 class Home extends Model
 {
     use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
+P     * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+
+    protected $guarded = [];
 
     public function services()
     {
@@ -30,9 +33,9 @@ class Home extends Model
         return $this->belongsTo(Discount::class);
     }
     
-    // public function homeimage()
-    // {
-    //     return $this->hasMany(HomeImage::class);
-    // }
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
     
 }
