@@ -55,9 +55,8 @@ Route::post('search', [SearchController::class, 'postSearch'])->name('postSearch
 Route::post('filter', [SearchController::class, 'postFilter'])->name('postFilter');
 
 
-Route::get('personal-info', function () {
-    return view('components.personal-info');
-});
+Route::get('personal-info', [ProfileController::class, 'getProfileUser'])->name('personal-info');
+Route::post('personal-info', [ProfileController::class, 'postProfileUser'])->name('postProfileUser');
 
 Route::get('profile', function () {
     return view('components.profile');

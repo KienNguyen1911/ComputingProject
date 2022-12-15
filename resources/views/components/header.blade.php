@@ -100,7 +100,7 @@
                                                 <i class="fa-regular fa-heart" style="margin-right: 10px"></i>
                                                 Your Wishlist
                                             </a></li>
-                                        <li><a class="dropdown-item" href="#">
+                                        <li><a class="dropdown-item" href="{{ route('personal-info') }}">
                                                 <i class="fa-regular fa-user" style="margin-right: 10px"></i>
                                                 Edit Profile
                                             </a></li>

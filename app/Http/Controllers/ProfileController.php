@@ -30,4 +30,28 @@ class ProfileController extends Controller
         $user->save();
         return redirect()->back();
     }
+
+    public function getProfileUser(Request $request)
+    {
+        # code...
+        if(Auth::check()){
+            $user = Auth::user();
+            return view('user.personal-info', ['user' => $user]);
+        }else{
+            return redirect()->route('signin');
+        }
+    }
+
+    public function postProfileUser(Request $request)
+    {
+        # code...
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->user_address = $request->user_address;
+        $user->user_phonenumber = $request->user_phonenumber;
+        $user->save();
+        return redirect()->back();
+
+    }
 }
