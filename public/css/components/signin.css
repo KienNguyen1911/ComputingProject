@@ -207,7 +207,7 @@ a {
     display: flex;
     justify-content: center;
     margin-top: 32px;
-    spacing-between: 16px;
+    space-between: 16px;
 }
 
 .login__link {

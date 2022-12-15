@@ -36,13 +36,13 @@
 
                 <div class="login__note">Or continue with email</div>
                 <div class="login__btns">
-                    <a href="{{ route('google.login') }}" type="button" class="btn" style="border: 1px solid black; margin-right: 20px">
+                    <a href="{{ route('google.login') }}" type="button" class="btn" style="border: 1px solid black; margin-right: 20px; border-radius: 24px">
                         <i class="fa-brands fa-google"></i>
                         <span>Google</span>
                     </a>
-                    <a href="{{route('facebook.login')}}"type="button" class="btn" style="background-color:#046fe5; color:aliceblue">
+                    <a href="{{route('facebook.login')}}"type="button" class="btn" style="background-color:#046fe5; color:aliceblue; border-radius: 24px">
                         <i class="fa-brands fa-facebook"></i>
-                        <span>Facebook</span>
+                        <span>Facebook</span>   
                     </a>
                 </div>
                 <div class="login__foot">Don't have account?<a class="login__link" href="signup">Sign up</a></div>
