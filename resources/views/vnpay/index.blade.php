@@ -8,82 +8,81 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Tạo mới đơn hàng</title>
+    <title>New Order</title>
     <!-- Bootstrap core CSS -->
-    <link href="{{ asset('/vnpay/bootstrap.min.css') }}" rel="stylesheet" />
+    {{-- <link href="{{ asset('/vnpay/bootstrap.min.css') }}" rel="stylesheet" /> --}}
     <!-- Custom styles for this template -->
-    <link href="{{ asset('/vnpay/jumbotron-narrow.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('/vnpay/jumbotron-narrow.css') }}" rel="stylesheet"> --}}
     <script src="{{ asset('/vnpay/jquery-1.11.3.min.js') }}"></script>
 </head>
 
 <body>
     @include('components.header')
-    <div class="container">
+    <div class="container" style="padding: 20px 80px">
         <div class="header clearfix">
-            <h3 class="text-muted">VNPAY DEMO</h3>
+            <h3 class="text-muted">VNPAY </h3>
         </div>
-        <h3>Tạo mới đơn hàng</h3>
+        <h3>New Order</h3>
         <div class="table-responsive">
             <form action="{{ route('postVNPay', ['id'=>$data->id]) }}" id="create_form" method="POST">
                 @csrf
-                <div class="form-group">
-                    <label for="language">Loại hàng hóa </label>
+                <div class="form-group mt-2">
+                    <label for="language">Payment method </label>
                     <select name="order_type" id="order_type" class="form-control">
-                        <option value="topup">Nạp tiền điện thoại</option>
-                        <option value="billpayment">Thanh toán hóa đơn</option>
-                        <option value="fashion">Thời trang</option>
-                        <option value="other">Khác - Xem thêm tại VNPAY</option>
+                        <option value="billpayment">Bill Payment</option>
+                        <option value="topup">Telephone Card</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="other">Other - more at VNPAY</option>
                     </select>
                 </div>
                 {{-- bỏ mã hóa đơn --}}
-                <div class="form-group">
-                    <label for="amount">Số tiền</label>
+                <div class="form-group mt-2">
+                    <label for="amount">Amount</label>
                     <input class="form-control" id="amount" name="amount" type="number" value="{{$data->total_price}}" readonly />
                 </div>
-                <div class="form-group">
-                    <label for="order_desc">Nội dung thanh toán</label>
-                    <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2">Noi dung thanh toan</textarea>
+                <div class="form-group mt-2">
+                    <label for="order_desc">Payment Descript</label>
+                    <textarea class="form-control" cols="20" id="order_desc" name="order_desc" rows="2">Payment Descript</textarea>
                 </div>
-                <div class="form-group">
-                    <label for="bank_code">Ngân hàng</label>
+                <div class="form-group mt-2">
+                    <label for="bank_code">Bank</label>
                     <select name="bank_code" id="bank_code" class="form-control">
-                        <option value="">Không chọn</option>
-                        <option value="NCB"> Ngan hang NCB</option>
-                        <option value="AGRIBANK"> Ngan hang Agribank</option>
-                        <option value="SCB"> Ngan hang SCB</option>
-                        <option value="SACOMBANK">Ngan hang SacomBank</option>
-                        <option value="EXIMBANK"> Ngan hang EximBank</option>
-                        <option value="MSBANK"> Ngan hang MSBANK</option>
-                        <option value="NAMABANK"> Ngan hang NamABank</option>
-                        <option value="VNMART"> Vi dien tu VnMart</option>
-                        <option value="VIETINBANK">Ngan hang Vietinbank</option>
-                        <option value="VIETCOMBANK"> Ngan hang VCB</option>
-                        <option value="HDBANK">Ngan hang HDBank</option>
-                        <option value="DONGABANK"> Ngan hang Dong A</option>
-                        <option value="TPBANK"> Ngân hàng TPBank</option>
-                        <option value="OJB"> Ngân hàng OceanBank</option>
-                        <option value="BIDV"> Ngân hàng BIDV</option>
-                        <option value="TECHCOMBANK"> Ngân hàng Techcombank</option>
-                        <option value="VPBANK"> Ngan hang VPBank</option>
-                        <option value="MBBANK"> Ngan hang MBBank</option>
-                        <option value="ACB"> Ngan hang ACB</option>
-                        <option value="OCB"> Ngan hang OCB</option>
-                        <option value="IVB"> Ngan hang IVB</option>
-                        <option value="VISA"> Thanh toan qua VISA/MASTER</option>
+                        <option value="">No choice</option>
+                        <option value="NCB"> Bank NCB</option>
+                        <option value="AGRIBANK"> Bank Agribank</option>
+                        <option value="SCB"> Bank SCB</option>
+                        <option value="SACOMBANK">Bank SacomBank</option>
+                        <option value="EXIMBANK"> Bank EximBank</option>
+                        <option value="MSBANK"> Bank MSBANK</option>
+                        <option value="NAMABANK"> Bank NamABank</option>
+                        <option value="VNMART"> E-Wallet VnMart</option>
+                        <option value="VIETINBANK">Bank Vietinbank</option>
+                        <option value="VIETCOMBANK"> Bank VCB</option>
+                        <option value="HDBANK">Bank HDBank</option>
+                        <option value="DONGABANK"> Bank Dong A</option>
+                        <option value="TPBANK"> Bank TPBank</option>
+                        <option value="OJB"> Bank OceanBank</option>
+                        <option value="BIDV"> Bank BIDV</option>
+                        <option value="TECHCOMBANK"> Bank Techcombank</option>
+                        <option value="VPBANK"> Bank VPBank</option>
+                        <option value="MBBANK"> Bank MBBank</option>
+                        <option value="ACB"> Bank ACB</option>
+                        <option value="OCB"> Bank OCB</option>
+                        <option value="IVB"> Bank IVB</option>
+                        <option value="VISA"> Pay by VISA/MASTER</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="language">Ngôn ngữ</label>
+                <div class="form-group mt-2">
+                    <label for="language">Language</label>
                     <select name="language" id="language" class="form-control">
-                        <option value="vn">Tiếng Việt</option>
                         <option value="en">English</option>
+                        <option value="vn">Tiếng Việt</option>
                     </select>
                 </div>
                 {{-- bỏ thời hạn thanh toán --}}
  
-                <button type="submit" class="btn btn-primary" id="btnPopup">Thanh toán Post</button>
-                <button type="submit" name="redirect" id="redirect" class="btn btn-default">Thanh toán
-                    Redirect</button>
+                {{-- <button type="submit" class="btn btn-primary" id="btnPopup">Thanh toán Post</button> --}}
+                <button type="submit" name="redirect" id="redirect" class="btn btn-primary btn-block mt-3" style="width: 100%">Payment</button>
 
             </form>
         </div>
