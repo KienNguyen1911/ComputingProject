@@ -124,6 +124,7 @@ Route::get('/payment-details/{id}', [PaymentController::class, 'getPaymentDetail
 Route::get('/payment-delete/{id}', [PaymentController::class, 'getDeletePayment'])->name('deletePayment');
 Route::post('/payment-search', [PaymentController::class, 'searchPayment'])->name('searchPayment');
 Route::post('/payment-filter-by-date', [PaymentController::class, 'filterPaymentByDate'])->name('filterPaymentByDate');
+
 Route::prefix('google')->name('google.')->group(function () {
     Route::get('login', [LoginController::class, 'loginWithGoogle'])->name('login');
     Route::any('callback', [LoginController::class, 'callBackFromGoogle'])->name('callback');

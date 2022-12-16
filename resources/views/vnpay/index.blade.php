@@ -24,7 +24,7 @@
         </div>
         <h3>New Order</h3>
         <div class="table-responsive">
-            <form action="{{ route('postVNPay', ['id'=>$data->id]) }}" id="create_form" method="POST">
+            <form action="{{ route('postVNPay', ['id' => $data->id]) }}" id="create_form" method="POST">
                 @csrf
                 <div class="form-group mt-2">
                     <label for="language">Payment method </label>
@@ -38,7 +38,8 @@
                 {{-- bỏ mã hóa đơn --}}
                 <div class="form-group mt-2">
                     <label for="amount">Amount</label>
-                    <input class="form-control" id="amount" name="amount" type="number" value="{{$data->total_price}}" readonly />
+                    <input class="form-control" id="amount" name="amount" type="number"
+                        value="{{ $data->total_price }}" readonly />
                 </div>
                 <div class="form-group mt-2">
                     <label for="order_desc">Payment Descript</label>
@@ -80,9 +81,10 @@
                     </select>
                 </div>
                 {{-- bỏ thời hạn thanh toán --}}
- 
+
                 {{-- <button type="submit" class="btn btn-primary" id="btnPopup">Thanh toán Post</button> --}}
-                <button type="submit" name="redirect" id="redirect" class="btn btn-primary btn-block mt-3" style="width: 100%">Payment</button>
+                <button type="submit" name="redirect" id="redirect" class="btn btn-primary btn-block mt-3"
+                    style="width: 100%">Payment</button>
 
             </form>
         </div>

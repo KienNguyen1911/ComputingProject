@@ -69,7 +69,7 @@
                         <div class="sub-info" style="display: flex; justify-content: space-between">
                             <h4 style="margin: 0px; padding: 6px 8px; background: #C0EEE4; border-radius: 8px">Address:
                                 {{ $home->home_address }}</h4>
-                            <a href="" class="btn btn-outline-primary">View Home Details</a>
+                            <a href="{{ route('home-details', ['id'=>$home->id]) }}" class="btn btn-outline-primary">View Home Details</a>
                         </div>
                     </div>
                 </div>

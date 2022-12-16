@@ -91,6 +91,7 @@ class LoginController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->avatar_original = 'https://avatars.dicebear.com/api/adventurer/:'. $request->name. '.svg' ;
         $user->role = 'user';
         $user->email_verified_at = now();
         $user->save();

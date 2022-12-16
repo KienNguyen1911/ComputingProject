@@ -5,7 +5,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header" style="display: flex; justify-content: space-between">
-                    <h4 class="card-title"> Type Table</h4>
+                    <h4 class="card-title"> Service Table</h4>
                     <a href="{{ route('add.service') }}" class="btn btn-primary">Add More Type</a>
                 </div>
                 <div class="card-body">

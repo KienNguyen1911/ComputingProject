@@ -14,8 +14,7 @@ class Reservation extends Model
         'home_id',
         'start',
         'end',
-        // 'total_price',
-        // 'status',
+
     ];
 
     public function user()

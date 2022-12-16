@@ -27,6 +27,12 @@
         background-color: #23262F !important;
         color: white !important;
     }
+
+    
+    .avatar:hover {
+        cursor: pointer;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
 </style>
 
 <body>
@@ -86,8 +92,8 @@
                         <div class="navbar-icon__center">
                             @if (Auth::check())
                                 <div class="btn-group">
-                                    <button type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown"
-                                        aria-expanded="false" style="box-shadow: none">
+                                    <button type="button" class="btn dropdown-toggle avatar" data-bs-toggle="dropdown"
+                                        aria-expanded="false" style="border: 1px solid #e3dfdf; border-radius: 30px; ">
                                         <img class="navbar-profile__img" src="{{ Auth::user()->avatar_original }}"
                                             alt="" style="border-radius: 50%; width:30px">
                                     </button>
